@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Case Study of Project 2</title>
+    <title>Excercise Counter-Timer</title>
+    <link rel="icon" type="image/png" href="./assets/png/html-coding.png">
+
     <meta name="description" content="Case study page of Project" />
 
     <link rel="stylesheet" href="css/style.css" />
@@ -22,12 +24,12 @@
         <div class="header__logo-container">
           <div class="header__logo-img-cont">
             <img
-              src="./assets/png/john-doe.png"
-              alt="Ram Maheshwari Logo Image"
+              src="./assets/jpeg/ausaf2.jpg"
+              alt="ausaf Logo Image"
               class="header__logo-img"
             />
           </div>
-          <span class="header__logo-sub">John Doe</span>
+          <span class="header__logo-sub">Mohammad Ausaf</span>
         </div>
         <div class="header__main">
           <ul class="header__links">
@@ -84,12 +86,10 @@
     </header>
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
-        <h1 class="heading-primary">Project 2</h1>
+        <h1 class="heading-primary">Excercise Rep Counter Timer</h1>
         <div class="project-cs-hero__info">
           <p class="text-primary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            in numquam incidunt earum quaerat cum fuga, atque similique natus
-            nobis sit.
+            A pose detection cum timer implementation using Mediapipe pose estimation, however focused on preprocessing of the feed beforehand to filter feed fluctuations.
           </p>
         </div>
         <div class="project-cs-hero__cta">
@@ -102,7 +102,7 @@
         <div class="project-details__content">
           <div class="project-details__showcase-img-cont">
             <img
-              src="./assets/jpeg/project-mockup-example.jpeg"
+              src="./assets/jpeg/RepCounter Mock-Up.png"
               alt="Project Image"
               class="project-details__showcase-img"
             />
@@ -111,52 +111,64 @@
             <div class="project-details__desc">
               <h3 class="project-details__content-title">Project Overview</h3>
               <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Neque alias tenetur minus quaerat
-                aliquid, aut provident blanditiis, deleniti aspernatur ipsam
-                eaque veniam voluptatem corporis vitae mollitia laborum corrupti
-                ullam rem?
+                
+                This project is a computer vision-based fitness assistant designed to analyze a video of knee bend exercises.
+                 It automatically detects exercise scenes, filters out frame fluctuations, and employs pose estimation to track the knee joint angle.
+                The system counts successful repetitions, provides real-time feedback, and ensures correct exercise form, making it a valuable tool for fitness enthusiasts
               </p>
               <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem?
+                The main features and context of the project are as follows: <br><br>
+                <b>1. Scene Detection:</b><br>
+                &nbsp;&nbsp;  The project uses the scenedetect library to automatically detect different scenes in the input video based on content changes.
+                  <br>
+                <b>2. Frame Filtering:</b><br>
+                &nbsp;&nbsp; It filters the video feed for sudden frame fluctuations or transitions, ensuring that only stable frames are processed for pose estimation.
+                  <br>
+                <b>3. Pose Estimation:</b><br>
+                &nbsp;&nbsp; It employs the Mediapipe library for pose estimation, tracking key landmarks on the person's body, including the knee joint.
+                  <br>
+                <b>4. Rep Counting:</b><br>
+                &nbsp;&nbsp; The code counts the number of successful knee bends (reps) based on the angle of the knee joint. It measures the time elapsed during each rep to determine if it was executed correctly.
+                  <br>
+                <b>5. User Feedback:</b><br>
+                &nbsp;&nbsp;The project provides real-time feedback to the user, indicating whether they need to keep their knee bent or not.
+                 <br>
+                <b>6. Visual Interface:</b><br>
+                &nbsp;&nbsp; It displays the video feed with overlays showing the detected landmarks, knee angle, rep count, and timer.
+                <br>
+                Here is a decision diagram for the process : <br>
               </p>
+              <img 
+              src="./assets/svg/project2.svg"
+              alt="Project Image"
+              class="project-details__showcase-img"
+              />
             </div>
             <div class="project-details__tools-used">
               <h3 class="project-details__content-title">Tools Used</h3>
               <div class="skills">
-                <div class="skills__skill">HTML</div>
-                <div class="skills__skill">CSS</div>
-                <div class="skills__skill">JavaScript</div>
-                <div class="skills__skill">React</div>
-                <div class="skills__skill">SASS</div>
-                <div class="skills__skill">GIT</div>
-                <div class="skills__skill">Shopify</div>
-                <div class="skills__skill">Wordpress</div>
-                <div class="skills__skill">Google ADS</div>
-                <div class="skills__skill">Facebook Ads</div>
-                <div class="skills__skill">Android</div>
-                <div class="skills__skill">IOS</div>
+                <div class="skills__skill">Python</div>
+                <div class="skills__skill">OpenCV</div>
+                <div class="skills__skill">NumPY</div>
+                <div class="skills__skill">Mediapipe</div>
+                <div class="skills__skill">scenedetect Library</div>
+                <div class="skills__skill">PyCharm</div>
+                <div class="skills__skill">Google Colab</div>
               </div>
             </div>
             <div class="project-details__links">
-              <h3 class="project-details__content-title">See Live</h3>
+              <h3 class="project-details__content-title">See Live </h3>
               <a
-                href="#"
+                href="https://drive.google.com/file/d/1OnshtoOHzSiPSOI051Nj_IW7K8MUjuMl/view?usp=share_link"
                 class="btn btn--med btn--theme project-details__links-btn"
                 target="_blank"
-                >Live Link</a
+                >Demo Link</a
               >
               <a
-                href="#"
+                href="https://github.com/AusafMo/Exercise-CounterCumTimer"
                 class="btn btn--med btn--theme-inv project-details__links-btn"
                 target="_blank"
-                >Code Link</a
+                >GitHub Link</a
               >
             </div>
           </div>
@@ -168,7 +180,7 @@
         <div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
             <h2 class="heading heading-sm main-footer__heading-sm">
-              <span>Social</span>
+              <span>Socials</span>
             </h2>
             <div class="main-footer__social-cont">
               <a target="_blank" rel="noreferrer" href="#">
@@ -185,7 +197,7 @@
                   alt="icon"
                 />
               </a>
-              <a target="_blank" rel="noreferrer" href="#">
+              <!-- <a target="_blank" rel="noreferrer" href="#">
                 <img
                   class="main-footer__icon"
                   src="./assets/png/twitter-ico.png"
@@ -205,24 +217,23 @@
                   src="./assets/png/insta-ico.png"
                   alt="icon"
                 />
-              </a>
+              </a> -->
             </div>
           </div>
           <div class="main-footer__row main-footer__row-2">
-            <h4 class="heading heading-sm text-lt">John Doe</h4>
+            <h4 class="heading heading-sm text-lt">Mohammad Ausaf</h4>
             <p class="main-footer__short-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit facilis
-              tempora explicabo quae quod deserunt
+              ML-CV Enthusiast <br> Computer Science Undergrad at KIET, <br> Look around, I won't bite.
             </p>
           </div>
         </div>
 
-        <div class="main-footer__lower">
+        <!-- <div class="main-footer__lower">
           &copy; Copyright 2021. Made by
           <a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"
             >Ram Maheshwari</a
           >
-        </div>
+        </div> -->
       </div>
     </footer>
     <script src="./index.js"></script>
