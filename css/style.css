@@ -711,8 +711,26 @@ textarea {
       background-size: cover;
       background-position: center;
       position: relative;
-      display: flex; 
-      margin: auto;}
+      display: flex;
+      flex-direction: column; 
+      margin: auto;
+    }
+
+      .titleee{
+        margin-top: 12rem;
+        width: 100%;
+        font-size: 6rem;
+        margin-bottom: -6rem;
+        text-align: center;
+      }
+
+      #framee{
+        min-height: 14.5in;
+        width:60%;
+        margin: 150px;
+        margin: 10rem auto;
+      }
+
       /* @media only screen and (max-width: 37.5em) {
         .project-cs-hero {
           height: unset;
