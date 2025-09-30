@@ -66,14 +66,38 @@ video.addEventListener('ended', switchVideo);
 
 setInterval(switchVideo, 3000);
 
+const updateVideoCursor = () => {
+  if (video.muted) {
+    video.classList.remove('unmuted');
+    video.classList.add('muted');
+  } else {
+    video.classList.remove('muted');
+    video.classList.add('unmuted');
+  }
+};
+
+updateVideoCursor();
+
 unmuteButton.addEventListener('click', () => {
   if (video.muted) {
     video.muted = false;
-    unmuteButton.textContent = 'Mute silly ad';
+    unmuteButton.textContent = 'Sound On';
   } else {
     video.muted = true;
-    unmuteButton.textContent = 'Unmute silly ad';
+    unmuteButton.textContent = 'Sound Off';
   }
+  updateVideoCursor();
+});
+
+video.addEventListener('click', () => {
+  if (video.muted) {
+    video.muted = false;
+    unmuteButton.textContent = 'Sound On';
+  } else {
+    video.muted = true;
+    unmuteButton.textContent = 'Sound Off';
+  }
+  updateVideoCursor();
 });
 
 let lastScrollTop = 0;

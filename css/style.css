@@ -12,6 +12,73 @@ $breakpoint arguement choices:
 
 Inside media queries 1em is always 16px i.e 1em = 16px at every screen size only inside media queries
 */
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../assets/fonts/Epilogue-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../assets/fonts/Epilogue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../assets/fonts/Epilogue-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../assets/fonts/Epilogue-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+[data-single-word] em {
+  display: inline-block;
+  position: relative;
+  transform: translateY(-0.0075em);
+}
+
+:is(.display, h1, .h1, h2, .h2, h3, .h3, h4, .h4) em {
+  font-family: 'Lora', 'Times New Roman', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Epilogue', Arial, sans-serif;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.04em;
+  text-transform: lowercase;
+  font-stretch: condensed;
+}
+
+h1, .h1 {
+  font-size: 8rem;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
+  font-weight: 900;
+  font-stretch: condensed;
+}
 *,
 *::after,
 *::before {
@@ -36,11 +103,14 @@ html {
 body {
   box-sizing: border-box;
   position: relative;
-  line-height: 1.5;
+  line-height: 1.2;
   font-family: sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;
-  font-family: 'Source Sans Pro', sans-serif; }
+  font-family: 'Epilogue', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased; }
 
 a {
   text-decoration: none;
@@ -63,10 +133,15 @@ textarea {
   resize: none; }
 
 .heading-primary {
-  font-size: 6rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  text-align: center; }
+  font-size: 8rem;
+  text-transform: lowercase;
+  letter-spacing: -0.05em;
+  text-align: center;
+  font-weight: 900;
+  line-height: 0.85;
+  font-family: 'Epilogue', Arial, sans-serif;
+  color: #F5F5DC;
+  font-stretch: condensed; }
   @media only screen and (max-width: 37.5em) {
     .heading-primary {
       font-size: 4.5rem; } }
@@ -171,11 +246,19 @@ textarea {
       padding: 8rem 0; } }
 
 .text-primary {
-  color: #fff;
-  font-size: 2.2rem;
+  color: #F5F5DC;
+  font-size: 1.6rem;
   text-align: center;
   width: 100%;
-  line-height: 1.6; }
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: 'Epilogue', Arial, sans-serif; }
+
+.text-italic {
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0px; }
   @media only screen and (max-width: 37.5em) {
     .text-primary {
       font-size: 2rem; } }
@@ -185,38 +268,30 @@ textarea {
 
 .home-hero {
   color: #fff;
-  background: transparent;
+  background: #0a0a0a;
   height: 100vh;
   min-height: 80rem;
   max-height: 120rem;
   position: relative; }
-  .home-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    pointer-events: none; }
   @media only screen and (max-width: 37.5em) {
     .home-hero {
       height: unset;
       min-height: unset; } }
   .home-hero__socials {
-    position: absolute;
+    position: fixed;
     top: 50%;
-    border: 2px solid #eee;
-    border-left: 2px solid #eee;
+    left: 0.5rem;
     transform: translateY(-50%);
-    z-index: 2; }
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    overflow: visible;
+    border-radius: 8px; }
     @media only screen and (max-width: 56.25em) {
       .home-hero__socials {
         display: none; } }
   .home-hero__mouse-scroll-cont {
     position: absolute;
-    bottom: 3%;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2; }
@@ -224,46 +299,37 @@ textarea {
       .home-hero__mouse-scroll-cont {
         display: none; } }
   .home-hero__social {
-    width: 5rem; }
+    width: 3.5rem; }
   .home-hero__social-icon-link {
     width: 100%;
     display: block;
-    padding: 1.2rem;
-    border-bottom: 2px solid #eee;
-    transition: background .3s; }
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+    overflow: visible; }
     .home-hero__social-icon-link:hover {
-      background: rgba(255, 255, 255, 0.1); }
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.3);
+      z-index: 10; }
     .home-hero__social-icon-link--bd-none {
       border-bottom: 0; }
   .home-hero__social-icon {
-    width: 100%; }
-  .home-hero__socials--instagram {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    margin-top: 150px;
-    border: 2px solid #eee;
-    border-left: 2px solid #eee;
-    width: 5rem;
-    z-index: 2; }
-    @media only screen and (max-width: 56.25em) {
-      .home-hero__socials--instagram {
-        display: none; } }
+    width: 100%;
+    filter: sepia(100%) saturate(200%) hue-rotate(30deg) brightness(1.1); }
   .home-hero__content {
     position: absolute;
-    top: 50%;
+    bottom: 1rem;
     left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 90rem;
+    transform: translateX(-50%);
+    max-width: 100rem;
     width: 92%;
-    z-index: 2; }
+    z-index: 2;
+    padding: 2rem 4rem; }
     @media only screen and (max-width: 37.5em) {
       .home-hero__content {
-        padding: 19rem 0 13rem 0;
+        bottom: 0.5rem;
+        padding: 2rem 1.5rem;
         margin: auto;
-        position: static;
-        transform: translate(0, 0); } }
+        transform: translateX(-50%); } }
   .home-hero__info {
     margin: 3rem auto 0 auto;
     max-width: 80rem; }
@@ -273,33 +339,100 @@ textarea {
 
 .home-hero__video-container {
   position: absolute;
+  top: 2rem;
+  left: 4rem;
+  right: 4rem;
+  bottom: 0;
+  width: calc(100% - 8rem);
+  height: calc(100vh - 2rem);
+  overflow: hidden;
+  z-index: 0;
+  border-radius: 16px 16px 0 0;
+  background: #000;
+}
+
+.home-hero__video-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 70%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.home-hero__video-container::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
+  @media only screen and (max-width: 56.25em) {
+    .home-hero__video-container {
+      top: 0;
+      left: 2rem;
+      right: 2rem;
+      bottom: 0;
+      width: calc(100% - 4rem);
+      height: 100%;
+    }
+  }
+  @media only screen and (max-width: 37.5em) {
+    .home-hero__video-container {
+      top: 0;
+      left: 1rem;
+      right: 1rem;
+      bottom: 0;
+      width: calc(100% - 2rem);
+      height: 100%;
+    }
+  }
 
 .home-hero__video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.home-hero__video.muted {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>') 16 16, pointer;
+}
+
+.home-hero__video.unmuted {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>') 16 16, pointer;
 }
 
 .home-hero__unmute {
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 1rem 1.5rem;
+  bottom: 8rem;
+  left: 8rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #F5F5DC;
+  border: 2px solid rgba(245, 245, 220, 0.8);
+  border-radius: 50px;
+  padding: 1.2rem 2rem;
   font-size: 1.4rem;
   cursor: pointer;
   z-index: 10;
   white-space: nowrap;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
+}
+
+.home-hero__unmute:hover {
+  background: #F5F5DC;
+  color: black;
 }
 
 .vertical-video {
@@ -578,17 +711,21 @@ textarea {
   z-index: 1000;
   background: transparent;
   box-shadow: none;
-  transition: transform 0.3s ease-in-out; }
+  transition: transform 0.3s ease-in-out;
+  top: 1rem; }
   .header--hidden {
     transform: translateY(-100%); }
   .header__content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 5rem; }
+    padding: 1rem 8rem; }
     @media only screen and (max-width: 56.25em) {
       .header__content {
-        padding: 0 2rem; } }
+        padding: 0 4rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .header__content {
+        padding: 0 3rem; } }
   .header__logo-container {
     display: flex;
     align-items: center;
@@ -619,17 +756,18 @@ textarea {
     font-size: 1.8rem;
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    color: #F5F5DC; }
   .header__links {
     display: flex; }
     @media only screen and (max-width: 37.5em) {
       .header__links {
         display: none; } }
   .header__link {
-    padding: 2.2rem 3rem;
+    padding: 2.2rem 2rem;
     display: inline-block;
     font-size: 1.6rem;
-    color: #fff;
+    color: #F5F5DC;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
