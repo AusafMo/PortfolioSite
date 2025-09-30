@@ -36,3 +36,63 @@ const headerLogoConatiner = document.querySelector('.header__logo-container')
 headerLogoConatiner.addEventListener('click', () => {
   location.href = 'index.html'
 })
+
+const video = document.querySelector('.home-hero__video');
+const unmuteButton = document.getElementById('unmute-button');
+
+const videos = [
+  'https://storage.googleapis.com/ausaf-public/vid2',
+  'https://storage.googleapis.com/ausaf-public/vid4',
+  'https://storage.googleapis.com/ausaf-public/vid3',
+  'https://storage.googleapis.com/ausaf-public/vid1'
+];
+
+let currentVideoIndex = 0;
+
+const switchVideo = () => {
+  currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+  video.src = videos[currentVideoIndex];
+
+  if (videos[currentVideoIndex].includes('vid3')) {
+    video.classList.add('vertical-video');
+  } else {
+    video.classList.remove('vertical-video');
+  }
+
+  video.play();
+};
+
+video.addEventListener('ended', switchVideo);
+
+setInterval(switchVideo, 3000);
+
+unmuteButton.addEventListener('click', () => {
+  if (video.muted) {
+    video.muted = false;
+    unmuteButton.textContent = 'Mute silly ad';
+  } else {
+    video.muted = true;
+    unmuteButton.textContent = 'Unmute silly ad';
+  }
+});
+
+let lastScrollTop = 0;
+const header = document.querySelector('.header');
+const scrollThreshold = 50;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (Math.abs(scrollTop - lastScrollTop) <= scrollThreshold) {
+    return;
+  }
+  
+  if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+    header.classList.add('header--hidden');
+  } else {
+    header.classList.remove('header--hidden');
+  }
+  
+  lastScrollTop = scrollTop;
+});
+
