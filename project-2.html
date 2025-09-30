@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Excercise Counter-Timer</title>
+    <title>CV-RepCounter-Timer | Mohammad Ausaf</title>
     <link rel="icon" type="image/png" href="./assets/png/html-coding.png">
 
-    <meta name="description" content="Case study page of Project" />
+    <meta name="description" content="Computer Vision Exercise Rep Counter - Case Study" />
 
     <link rel="stylesheet" href="css/style.css" />
 
@@ -47,6 +47,15 @@
             <li class="header__link-wrapper">
               <a href="./index.html#contact" class="header__link"> Contact </a>
             </li>
+            <li class="header__link-wrapper">
+              <a href="./resume.html" class="header__link"> Resume </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./blogs/blog-home.html" class="header__link"> Blog </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./maths.html" class="header__link"> Teaching Myself Maths </a>
+            </li>
           </ul>
           <div class="header__main-ham-menu-cont">
             <img
@@ -80,20 +89,29 @@
             <li class="header__sm-menu-link">
               <a href="./index.html#contact"> Contact </a>
             </li>
+            <li class="header__sm-menu-link">
+              <a href="./resume.html"> Resume </a>
+            </li>
+            <li class="header__sm-menu-link">
+              <a href="./blogs/blog-home.html"> Blog </a>
+            </li>
+            <li class="header__sm-menu-link">
+              <a href="./maths.html"> Teaching Myself Maths </a>
+            </li>
           </ul>
         </div>
       </div>
     </header>
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
-        <h1 class="heading-primary">Excercise Rep Counter Timer</h1>
+        <h1 class="heading-primary">CV-RepCounter-Timer</h1>
         <div class="project-cs-hero__info">
           <p class="text-primary">
-            A pose detection cum timer implementation using Mediapipe pose estimation, however focused on preprocessing of the feed beforehand to filter feed fluctuations.
+            Computer vision-powered exercise tracking system using MediaPipe pose estimation with advanced frame filtering to eliminate feed fluctuations and ensure accurate rep counting.
           </p>
         </div>
         <div class="project-cs-hero__cta">
-          <a href="https://drive.google.com/file/d/1OnshtoOHzSiPSOI051Nj_IW7K8MUjuMl/view?usp=share_link" class="btn btn--bg" target="_blank">Demo Link</a>
+          <a href="https://drive.google.com/file/d/1OnshtoOHzSiPSOI051Nj_IW7K8MUjuMl/view?usp=share_link" class="btn btn--bg" target="_blank">Video Demo</a>
         </div>
       </div>
     </section>
@@ -111,32 +129,30 @@
             <div class="project-details__desc">
               <h3 class="project-details__content-title">Project Overview</h3>
               <p class="project-details__desc-para">
-                
-                This project is a computer vision-based fitness assistant designed to analyze a video of knee bend exercises.
-                 It automatically detects exercise scenes, filters out frame fluctuations, and employs pose estimation to track the knee joint angle.
-                The system counts successful repetitions, provides real-time feedback, and ensures correct exercise form, making it a valuable tool for fitness enthusiasts
+                Computer vision-based fitness assistant for automated exercise tracking and form analysis. The system processes video input to detect exercise movements, filter noise, and provide accurate repetition counting with real-time feedback.
               </p>
               <p class="project-details__desc-para">
-                The main features and context of the project are as follows: <br><br>
-                <b>1. Scene Detection:</b><br>
-                &nbsp;&nbsp;  The project uses the scenedetect library to automatically detect different scenes in the input video based on content changes.
-                  <br>
-                <b>2. Frame Filtering:</b><br>
-                &nbsp;&nbsp; It filters the video feed for sudden frame fluctuations or transitions, ensuring that only stable frames are processed for pose estimation.
-                  <br>
-                <b>3. Pose Estimation:</b><br>
-                &nbsp;&nbsp; It employs the Mediapipe library for pose estimation, tracking key landmarks on the person's body, including the knee joint.
-                  <br>
-                <b>4. Rep Counting:</b><br>
-                &nbsp;&nbsp; The code counts the number of successful knee bends (reps) based on the angle of the knee joint. It measures the time elapsed during each rep to determine if it was executed correctly.
-                  <br>
-                <b>5. User Feedback:</b><br>
-                &nbsp;&nbsp;The project provides real-time feedback to the user, indicating whether they need to keep their knee bent or not.
-                 <br>
-                <b>6. Visual Interface:</b><br>
-                &nbsp;&nbsp; It displays the video feed with overlays showing the detected landmarks, knee angle, rep count, and timer.
-                <br>
-                Here is a decision diagram for the process : <br>
+                Built with advanced preprocessing techniques to handle video feed fluctuations and ensure consistent pose detection accuracy across different lighting conditions and camera angles.
+              </p>
+              
+              <h3 class="project-details__content-title">Key Features</h3>
+              <p class="project-details__desc-para">
+                <strong>Scene Detection:</strong> Automatic identification of exercise segments using content-based scene analysis for precise tracking boundaries.
+              </p>
+              <p class="project-details__desc-para">
+                <strong>Frame Filtering:</strong> Advanced preprocessing to eliminate frame fluctuations and stabilize video input for consistent pose estimation.
+              </p>
+              <p class="project-details__desc-para">
+                <strong>Pose Estimation:</strong> MediaPipe-powered landmark detection for accurate joint angle calculation and movement tracking.
+              </p>
+              <p class="project-details__desc-para">
+                <strong>Rep Counting:</strong> Intelligent repetition detection based on knee joint angle analysis with timing validation for proper exercise form.
+              </p>
+              <p class="project-details__desc-para">
+                <strong>Real-time Feedback:</strong> Live guidance system providing form corrections and exercise cues during workout sessions.
+              </p>
+              <p class="project-details__desc-para">
+                <strong>Visual Interface:</strong> Comprehensive overlay display showing pose landmarks, joint angles, rep count, and timing metrics.
               </p>
               <img 
               src="./assets/svg/project2.svg"
@@ -145,30 +161,30 @@
               />
             </div>
             <div class="project-details__tools-used">
-              <h3 class="project-details__content-title">Tools Used</h3>
+              <h3 class="project-details__content-title">Technologies</h3>
               <div class="skills">
                 <div class="skills__skill">Python</div>
                 <div class="skills__skill">OpenCV</div>
-                <div class="skills__skill">NumPY</div>
-                <div class="skills__skill">Mediapipe</div>
-                <div class="skills__skill">scenedetect Library</div>
-                <div class="skills__skill">PyCharm</div>
-                <div class="skills__skill">Google Colab</div>
+                <div class="skills__skill">MediaPipe</div>
+                <div class="skills__skill">NumPy</div>
+                <div class="skills__skill">Scene Detection</div>
+                <div class="skills__skill">Computer Vision</div>
+                <div class="skills__skill">Pose Estimation</div>
               </div>
             </div>
             <div class="project-details__links">
-              <h3 class="project-details__content-title">See Demo </h3>
+              <h3 class="project-details__content-title">Project Links</h3>
               <a
                 href="https://drive.google.com/file/d/1OnshtoOHzSiPSOI051Nj_IW7K8MUjuMl/view?usp=share_link"
                 class="btn btn--med btn--theme project-details__links-btn"
                 target="_blank"
-                >Demo Link</a
+                >Video Demo</a
               >
               <a
                 href="https://github.com/AusafMo/Exercise-CounterCumTimer"
-                class="btn btn--med btn--theme-inv project-details__links-btn"
+                class="btn btn--med btn--theme project-details__links-btn"
                 target="_blank"
-                >GitHub Link</a
+                >GitHub</a
               >
             </div>
           </div>
@@ -183,14 +199,14 @@
               <span>Socials</span>
             </h2>
             <div class="main-footer__social-cont">
-              <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/mohammad-ausaf/">
                 <img
                   class="main-footer__icon"
                   src="./assets/png/linkedin-ico.png"
                   alt="icon"
                 />
               </a>
-              <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://github.com/AusafMo">
                 <img
                   class="main-footer__icon"
                   src="./assets/png/github-ico.png"
@@ -204,37 +220,29 @@
                   alt="icon"
                 />
               </a>
-
-            <!-- <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/yt-ico.png"
-                  alt="icon"
-                />
-              </a>
-              <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://www.instagram.com/ausafmoh/">
                 <img
                   class="main-footer__icon main-footer__icon--mr-none"
                   src="./assets/png/insta-ico.png"
                   alt="icon"
                 />
-              </a> -->
+              </a>
             </div>
           </div>
           <div class="main-footer__row main-footer__row-2">
             <h4 class="heading heading-sm text-lt">Mohammad Ausaf</h4>
             <p class="main-footer__short-desc">
-              ML-CV Enthusiast <br> Computer Science Undergrad at KIET, <br> Look around, I won't bite.
+              SE (AI) @ Galleri5, <br> Agentic AI Systems.
             </p>
           </div>
         </div>
 
-        <!-- <div class="main-footer__lower">
-          &copy; Copyright 2021. Made by
+        <div class="main-footer__lower">
+            Built on top of
           <a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"
-            >Ram Maheshwari</a
-          >
-        </div> -->
+            >Ram Maheshwari's</a
+          > template
+        </div>
       </div>
     </footer>
     <script src="./index.js"></script>

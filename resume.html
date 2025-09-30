@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>AushadHub</title>
+    <title>Resume | Mohammad Ausaf</title>
     <link rel="icon" type="image/png" href="./assets/png/html-coding.png">
 
-    <meta name="description" content="Case study page of Project" />
+    <meta name="description" content="Mohammad Ausaf - Software Engineer (AI) Resume" />
 
     <link rel="stylesheet" href="css/style.css" />
 
@@ -48,7 +48,13 @@
               <a href="./index.html#contact" class="header__link"> Contact </a>
             </li>
             <li class="header__link-wrapper">
-              <a href="./resume.html#resume" class="header__link"> Resume </a>
+              <a href="./resume.html" class="header__link"> Resume </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./blogs/blog-home.html" class="header__link"> Blog </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./maths.html" class="header__link"> Teaching Myself Maths </a>
             </li>
           </ul>
           <div class="header__main-ham-menu-cont">
@@ -85,24 +91,52 @@
             </li>
 
             <li class="header__sm-menu-link">
-              <a href="./index.html#contact"> Resume </a>
+              <a href="./resume.html"> Resume </a>
+            </li>
+            <li class="header__sm-menu-link">
+              <a href="./blogs/blog-home.html"> Blog </a>
+            </li>
+            <li class="header__sm-menu-link">
+              <a href="./maths.html"> Teaching Myself Maths </a>
             </li>
           </ul>
         </div>
       </div>
     </header>
 
-    <div class="resume">
-        <!-- <h1 class="heading-primary"> Resume: </h1> -->
-        <h1 class="titleee">Resume</h1>
-        <!-- <object data="assets/pdf/Mohammad-Ausaf-CV.pdf" type="application/pdf" style="min-height:150vh;width:100%;"  ></object> -->
-        <iframe src="assets/pdf/Mohammad-Ausaf-CV.pdf#zoom=100" id="framee">
-          This browser does not support PDFs. Please download the PDF to view it: 
-          <a href="assets/pdf/Mohammad-Ausaf-CV.pdf">
-            Download PDF
-          </a>
-        </iframe>
-    </div>
+    <section class="resume-hero">
+      <div class="resume-hero__content">
+        <h1 class="heading-primary">Resume</h1>
+        <div class="resume-hero__info">
+          <p class="text-primary">
+            Software Engineer (AI) - Agentic Systems & Autonomous Workflows
+          </p>
+        </div>
+        <div class="resume-hero__cta">
+          <a href="assets/pdf/Mohammad-Ausaf-CV.pdf" class="btn btn--bg" target="_blank">Download PDF</a>
+        </div>
+      </div>
+    </section>
+    
+    <section class="resume-content">
+      <div class="main-container">
+        <div class="resume-content__main">
+          <div class="resume-pdf-container">
+            <iframe 
+              src="assets/pdf/Mohammad-Ausaf-CV.pdf#zoom=100" 
+              class="resume-pdf-viewer"
+              title="Mohammad Ausaf Resume">
+              <div class="resume-pdf-fallback">
+                <p>This browser does not support PDFs.</p>
+                <a href="assets/pdf/Mohammad-Ausaf-CV.pdf" class="btn btn--theme">
+                  Download PDF
+                </a>
+              </div>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
    
     <footer class="main-footer">
       <div class="main-container">
@@ -112,61 +146,49 @@
               <span>Socials</span>
             </h2>
             <div class="main-footer__social-cont">
-              <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/mohammad-ausaf/">
                 <img
                   class="main-footer__icon"
                   src="./assets/png/linkedin-ico.png"
                   alt="icon"
                 />
               </a>
-              <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://github.com/AusafMo">
                 <img
                   class="main-footer__icon"
                   src="./assets/png/github-ico.png"
                   alt="icon"
                 />
-                <a target="_blank" rel="noreferrer" href="https://leetcode.com/MoAusaf/">
-                  <img
-                    class="main-footer__icon"
-                    src="./assets/png/leetcode.png"
-                    alt="icon"
-                  />
-                </a>
-  
               </a>
-
-              </a>
-              <!-- <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://leetcode.com/MoAusaf/">
                 <img
                   class="main-footer__icon"
-                  src="./assets/png/yt-ico.png"
+                  src="./assets/png/leetcode.png"
                   alt="icon"
                 />
               </a>
-              <a target="_blank" rel="noreferrer" href="#">
+              <a target="_blank" rel="noreferrer" href="https://www.instagram.com/ausafmoh/">
                 <img
                   class="main-footer__icon main-footer__icon--mr-none"
                   src="./assets/png/insta-ico.png"
                   alt="icon"
-                /> -->
-              </a>
+                />
             </div>
           </div>
           <div class="main-footer__row main-footer__row-2">
             <h4 class="heading heading-sm text-lt">Mohammad Ausaf</h4>
             <p class="main-footer__short-desc">
-              Computer Science Undergrad at KIET. <br> ML-CV Enthusiast. <br> Look around, I won't bite.
-
+              SE (AI) @ Galleri5, <br> Agentic AI Systems.
             </p>
           </div>
         </div>
 
-        <!-- <div class="main-footer__lower">
-          &copy; Copyright 2021. Made by
+        <div class="main-footer__lower">
+            Built on top of
           <a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"
-            >Ram Maheshwari</a
-          >
-        </div> -->
+            >Ram Maheshwari's</a
+          > template
+        </div>
       </div>
     </footer>
     <script src="./index.js"></script>

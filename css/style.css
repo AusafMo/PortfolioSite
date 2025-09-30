@@ -409,11 +409,11 @@ textarea {
 }
 
 .home-hero__video.muted {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>') 16 16, pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%23F5F5DC" stroke="%23F5F5DC" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>') 16 16, pointer;
 }
 
 .home-hero__video.unmuted {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>') 16 16, pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%23F5F5DC" stroke="%23F5F5DC" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>') 16 16, pointer;
 }
 
 .home-hero__unmute {
@@ -619,10 +619,10 @@ textarea {
     width: 100%;
     display: block;
     object-fit: cover;
-    filter: brightness(0.25) contrast(0.6) saturate(0.5) opacity(0.7);
+    filter: brightness(0.6) contrast(0.9) saturate(0.8);
     transition: filter 0.3s ease; }
   .projects__row-img:hover {
-    filter: brightness(0.4) contrast(0.8) saturate(0.7) opacity(0.9); }
+    filter: brightness(0.8) contrast(1) saturate(0.95); }
   .projects__row-content {
     padding: 2rem 0;
     display: flex;
@@ -635,19 +635,22 @@ textarea {
     .projects__row-content-title {
       font-weight: 700;
       font-size: 2.8rem;
-      margin-bottom: 2rem; }
+      margin-bottom: 2rem;
+      color: #F5F5DC;
+      font-family: 'Epilogue', Arial, sans-serif; }
       @media only screen and (max-width: 37.5em) {
         .projects__row-content-title {
           font-size: 2.4rem; } }
     .projects__row-content-desc {
-      font-size: 1.8rem;
-      color: #e5e5e5;
+      font-size: 1.6rem;
+      color: #F5F5DC;
+      font-family: 'Epilogue', Arial, sans-serif;
       max-width: 60rem;
       line-height: 1.7;
       margin-bottom: 3rem; }
       @media only screen and (max-width: 37.5em) {
         .projects__row-content-desc {
-          font-size: 1.7rem; } }
+          font-size: 1.5rem; } }
 
 .projects__row-img--placeholder {
   display: flex;
@@ -714,6 +717,80 @@ textarea {
 .plants-placeholder {
   background: linear-gradient(135deg, #0f1914 0%, #1a3223 100%);
   border-color: rgba(34, 197, 94, 0.2);
+}
+
+.resume-hero {
+  color: #F5F5DC;
+  background: #000;
+  padding: 15rem 0 10rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.resume-hero__content {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.resume-hero__cta .btn {
+  padding: 1.5rem 3rem;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
+
+.resume-content {
+  background: #000;
+  color: #F5F5DC;
+  padding: 8rem 0;
+}
+
+.resume-content__main {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.resume-pdf-container {
+  background: rgba(245, 245, 220, 0.05);
+  border: 1px solid rgba(245, 245, 220, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(245, 245, 220, 0.1);
+}
+
+.resume-pdf-viewer {
+  width: 100%;
+  height: 120vh;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.resume-pdf-fallback {
+  text-align: center;
+  padding: 4rem;
+  color: #F5F5DC;
+  font-family: 'Epilogue', Arial, sans-serif;
+}
+
+.resume-pdf-fallback p {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+@media only screen and (max-width: 56.25em) {
+  .resume-hero {
+    padding: 12rem 0 8rem 0;
+  }
+  
+  .resume-pdf-viewer {
+    height: 80vh;
+  }
+  
+  .resume-content {
+    padding: 6rem 0;
+  }
 }
 
 .contact {
@@ -799,10 +876,8 @@ textarea {
         width: 100%; } }
 
 .project-cs-hero {
-  color: #fff;
-  background: linear-gradient(to right, rgba(32, 26, 22, 0.8), rgba(32, 26, 22, 0.8)), url(../../assets/svg/common-bg.svg);
-  background-size: cover;
-  background-position: center;
+  color: #F5F5DC;
+  background: #000;
   position: relative; }
   @media only screen and (max-width: 37.5em) {
     .project-cs-hero {
@@ -826,6 +901,11 @@ textarea {
     margin-top: 5rem;
     text-align: center; }
 
+.project-details {
+  background: #000;
+  color: #F5F5DC;
+}
+
 .project-details__content {
   padding: 8rem 0;
   max-width: 90rem;
@@ -833,7 +913,9 @@ textarea {
   .project-details__content-title {
     font-weight: 700;
     font-size: 2.8rem;
-    margin-bottom: 3rem; }
+    margin-bottom: 3rem;
+    color: #F5F5DC;
+    font-family: 'Epilogue', Arial, sans-serif; }
     @media only screen and (max-width: 37.5em) {
       .project-details__content-title {
         font-size: 2.4rem; } }
@@ -855,14 +937,16 @@ textarea {
   .project-details__desc-para {
     font-size: 1.8rem;
     line-height: 1.7;
-    color: #e5e5e5;
+    color: #F5F5DC;
+    font-family: 'Epilogue', Arial, sans-serif;
     margin-bottom: 2rem; }
 
 .project-details__desc-list {
   margin: 2rem 0;
   padding-left: 2rem; }
   .project-details__desc-list li {
-    color: #e5e5e5;
+    color: #F5F5DC;
+    font-family: 'Epilogue', Arial, sans-serif;
     font-size: 1.6rem;
     line-height: 1.8;
     margin-bottom: 1rem; }
@@ -927,16 +1011,16 @@ textarea {
     .header__logo-container:hover {
       color: #201a16; }
   .header__logo-img-cont {
-    width: 5rem;
-    height: 5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50px;
     overflow: hidden;
     margin-right: 1.5rem;
     background: #201a16; }
     @media only screen and (max-width: 56.25em) {
       .header__logo-img-cont {
-        width: 4.5rem;
-        height: 4.5rem;
+        width: 3rem;
+        height: 3rem;
         margin-right: 1.2rem; } }
   .header__logo-img {
     width: 100%;
@@ -978,9 +1062,11 @@ textarea {
       .header__main-ham-menu-cont {
         display: block; } }
   .header__main-ham-menu {
-    width: 100%; }
+    width: 100%;
+    filter: brightness(0) saturate(100%) invert(95%) sepia(10%) saturate(736%) hue-rotate(13deg) brightness(107%) contrast(94%); }
   .header__main-ham-menu-close {
-    width: 100%; }
+    width: 100%;
+    filter: brightness(0) saturate(100%) invert(95%) sepia(10%) saturate(736%) hue-rotate(13deg) brightness(107%) contrast(94%); }
   .header__sm-menu {
     background: rgba(0, 0, 0, 0.95);
     position: absolute;
@@ -1032,7 +1118,8 @@ textarea {
       .main-footer__upper {
         display: block; } }
   .main-footer__row-1 {
-    order: 2; }
+    order: 2;
+    text-align: center; }
     @media only screen and (max-width: 56.25em) {
       .main-footer__row-1 {
         margin-bottom: 5rem; } }
@@ -1049,7 +1136,10 @@ textarea {
     font-size: 1.5rem;
     line-height: 1.7; }
   .main-footer__social-cont {
-    margin-top: 2rem; }
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   .main-footer__icon {
     margin-right: 1rem;
     width: 2.5rem; }
@@ -1085,7 +1175,8 @@ textarea {
 
 .md-document {
   background: #000;
-  color: #fff;
+  color: #F5F5DC;
+  font-family: 'Epilogue', Arial, sans-serif;
   padding: 15rem 5rem 8rem 5rem;
   min-height: 100vh; }
   @media only screen and (max-width: 768px) {
@@ -1098,24 +1189,29 @@ textarea {
 
 .md-h1 {
   font-size: 4rem;
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: 3rem;
   text-align: center;
-  color: #fff; }
+  color: #F5F5DC;
+  font-family: 'Epilogue', Arial, sans-serif;
+  text-transform: lowercase;
+  letter-spacing: -0.02em; }
   @media only screen and (max-width: 768px) {
     .md-h1 {
       font-size: 3rem; } }
 
 .md-h2 {
   font-size: 2.8rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 4rem 0 2rem 0;
-  color: #fff; }
+  color: #F5F5DC;
+  font-family: 'Epilogue', Arial, sans-serif; }
 
 .md-p {
   font-size: 1.6rem;
   line-height: 1.8;
-  color: #e5e5e5;
+  color: #F5F5DC;
+  font-family: 'Epilogue', Arial, sans-serif;
   margin-bottom: 2rem; }
 
 .video-grid {
@@ -1128,10 +1224,11 @@ textarea {
       grid-template-columns: 1fr; } }
 
 .video-grid__item {
-  background: #1a1a1a;
-  border-radius: 10px;
+  background: rgba(245, 245, 220, 0.05);
+  border: 1px solid rgba(245, 245, 220, 0.1);
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 0 20px rgba(245, 245, 220, 0.1); }
 
 .video-grid__video-wrapper {
   position: relative;
@@ -1265,13 +1362,16 @@ textarea {
     .blog_row-content-title {
       font-weight: 700;
       font-size: 2.8rem;
-      margin-bottom: 2rem; }
+      margin-bottom: 2rem;
+      color: #F5F5DC;
+      font-family: 'Epilogue', Arial, sans-serif; }
       @media only screen and (max-width: 37.5em) {
         .blog_row-content-title {
           font-size: 2.4rem; } }
     .blog_row-content-desc {
       font-size: 1.8rem;
-      color: #e5e5e5;
+      color: #F5F5DC;
+      font-family: 'Epilogue', Arial, sans-serif;
       max-width: 60rem;
       line-height: 1.7;
       margin-bottom: 3rem; }
