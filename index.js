@@ -40,65 +40,67 @@ headerLogoConatiner.addEventListener('click', () => {
 const video = document.querySelector('.home-hero__video');
 const unmuteButton = document.getElementById('unmute-button');
 
-const videos = [
-  'https://storage.googleapis.com/ausaf-public/vid2',
-  'https://storage.googleapis.com/ausaf-public/vid4',
-  'https://storage.googleapis.com/ausaf-public/vid3',
-  'https://storage.googleapis.com/ausaf-public/vid1'
-];
+if (video && unmuteButton) {
+  const videos = [
+    'https://storage.googleapis.com/ausaf-public/vid2',
+    'https://storage.googleapis.com/ausaf-public/vid4',
+    'https://storage.googleapis.com/ausaf-public/vid3',
+    'https://storage.googleapis.com/ausaf-public/vid1'
+  ];
 
-let currentVideoIndex = 0;
+  let currentVideoIndex = 0;
 
-const switchVideo = () => {
-  currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-  video.src = videos[currentVideoIndex];
+  const switchVideo = () => {
+    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+    video.src = videos[currentVideoIndex];
 
-  if (videos[currentVideoIndex].includes('vid3')) {
-    video.classList.add('vertical-video');
-  } else {
-    video.classList.remove('vertical-video');
-  }
+    if (videos[currentVideoIndex].includes('vid3')) {
+      video.classList.add('vertical-video');
+    } else {
+      video.classList.remove('vertical-video');
+    }
 
-  video.play();
-};
+    video.play();
+  };
 
-video.addEventListener('ended', switchVideo);
+  video.addEventListener('ended', switchVideo);
 
-setInterval(switchVideo, 3000);
+  setInterval(switchVideo, 3000);
 
-const updateVideoCursor = () => {
-  if (video.muted) {
-    video.classList.remove('unmuted');
-    video.classList.add('muted');
-  } else {
-    video.classList.remove('muted');
-    video.classList.add('unmuted');
-  }
-};
+  const updateVideoCursor = () => {
+    if (video.muted) {
+      video.classList.remove('unmuted');
+      video.classList.add('muted');
+    } else {
+      video.classList.remove('muted');
+      video.classList.add('unmuted');
+    }
+  };
 
-updateVideoCursor();
-
-unmuteButton.addEventListener('click', () => {
-  if (video.muted) {
-    video.muted = false;
-    unmuteButton.textContent = 'Sound On';
-  } else {
-    video.muted = true;
-    unmuteButton.textContent = 'Sound Off';
-  }
   updateVideoCursor();
-});
 
-video.addEventListener('click', () => {
-  if (video.muted) {
-    video.muted = false;
-    unmuteButton.textContent = 'Sound On';
-  } else {
-    video.muted = true;
-    unmuteButton.textContent = 'Sound Off';
-  }
-  updateVideoCursor();
-});
+  unmuteButton.addEventListener('click', () => {
+    if (video.muted) {
+      video.muted = false;
+      unmuteButton.textContent = 'Sound On';
+    } else {
+      video.muted = true;
+      unmuteButton.textContent = 'Sound Off';
+    }
+    updateVideoCursor();
+  });
+
+  video.addEventListener('click', () => {
+    if (video.muted) {
+      video.muted = false;
+      unmuteButton.textContent = 'Sound On';
+    } else {
+      video.muted = true;
+      unmuteButton.textContent = 'Sound Off';
+    }
+    updateVideoCursor();
+  });
+}
 
 let lastScrollTop = 0;
 const header = document.querySelector('.header');
