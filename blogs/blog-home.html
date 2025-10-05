@@ -32,12 +32,77 @@
         border-radius: 10px;
         padding: 2rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: center;
       }
       
       .blog_row:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         background: rgba(255, 255, 255, 0.04);
+      }
+      
+      .blog_row-img-cont {
+        overflow: hidden;
+        border-radius: 8px;
+        aspect-ratio: 16/10;
+      }
+      
+      .blog_row-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        object-position: center 60%;
+        transition: transform 0.3s ease;
+      }
+      
+      .blog_row:hover .blog_row-img {
+        transform: scale(1.05);
+      }
+      
+      .clickable-card {
+        cursor: pointer;
+      }
+      
+      .clickable-card .blog_row-img {
+        cursor: default;
+      }
+      
+      @media (max-width: 768px) {
+        .blog-cards-container {
+          gap: 2rem;
+          margin-top: 3rem;
+        }
+        
+        .blog_row {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding: 1.5rem;
+        }
+        
+        .blog_row-img-cont {
+          aspect-ratio: 16/9;
+        }
+        
+        .blog_row-content-title {
+          font-size: 2.2rem !important;
+        }
+        
+        .blog_row-content-desc {
+          font-size: 1.5rem !important;
+        }
+        
+        .blog-meta {
+          font-size: 1.2rem !important;
+          gap: 1rem;
+        }
+        
+        .blog-tag {
+          font-size: 1.1rem !important;
+          padding: 0.3rem 0.8rem;
+        }
       }
       
       .blog-meta {
@@ -129,20 +194,21 @@
         <h2 class="heading heading-sec heading-sec__mb-bg">
           <span class="heading-sec__main heading-sec__main--lt">(A)Technical Thoughts</span>
           <span class="heading-sec__sub heading-sec__sub--lt">
-            I'm no expert, &nbsp;not claiming to be; <br>
-             Have some things to say; &nbsp; need some place to be.
+            A lil dumb, a lil numb, <br>
+             this is a rather astoundingly stupid blog, i agree
           </span>
         </h2>
 
         <div class="blog-cards-container">
           <div class="projects__content">
-            <div class="blog_row">
+            <div class="blog_row clickable-card" onclick="window.location.href='./intro.html'">
               <div class="blog_row-img-cont">
                 <img
-                  src="../assets/thumbs/7.png"
-                  alt="Random Pic"
+                  src="https://storage.googleapis.com/ausaf-public/enlightenment.jpg"
+                  alt="Intro Blog Thumbnail"
                   class="blog_row-img"
                   loading="lazy"
+                  onclick="event.stopPropagation()"
                 />
               </div>
               <div class="blog_row-content">
@@ -158,23 +224,19 @@
                   <span class="blog-tag">Personal</span>
                   <span class="blog-tag">Introduction</span>
                 </div>
-                <a
-                  href="./intro.html"
-                  class="btn btn--med btn--theme dynamicBgClr"
-                  >Read</a
-                >
               </div>
             </div>
           </div>
 
           <div class="projects__content">
-            <div class="blog_row">
+            <div class="blog_row clickable-card" onclick="window.location.href='./blog-1.html'">
               <div class="blog_row-img-cont">
                 <img
-                  src="../assets/thumbs/8.png"
-                  alt="Random Pic"
+                  src="https://storage.googleapis.com/ausaf-public/night.jpg"
+                  alt="AI'vory Towers Blog Thumbnail"
                   class="blog_row-img"
                   loading="lazy"
+                  onclick="event.stopPropagation()"
                 />
               </div>
               <div class="blog_row-content">
@@ -191,11 +253,6 @@
                   <span class="blog-tag">Philosophy</span>
                   <span class="blog-tag">Ethics</span>
                 </div>
-                <a
-                  href="./blog-1.html"
-                  class="btn btn--med btn--theme dynamicBgClr"
-                  >Read</a
-                >
               </div>
             </div>
           </div>

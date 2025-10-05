@@ -109,11 +109,71 @@
     }
     
     @media (max-width: 768px) {
+      .hero-video-container {
+        height: 100vh;
+      }
+      
+      .blog-title-overlay {
+        bottom: 60px;
+        width: 95%;
+      }
+      
       .blog-title-overlay h1 {
         font-size: 2.5rem;
+        margin-bottom: 8px;
       }
+      
       .blog-title-overlay .subtitle {
         font-size: 1.2rem;
+      }
+      
+      .scroll-indicator {
+        bottom: 20px;
+        font-size: 20px;
+      }
+      
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      .stackedit__left {
+        width: 200px !important;
+      }
+      
+      .stackedit__right {
+        margin-left: 0 !important;
+        padding: 1rem !important;
+      }
+      
+      .stackedit__html {
+        padding: 1rem !important;
+        font-size: 1.4rem !important;
+      }
+      
+      .stackedit__html h1 {
+        font-size: 2.5rem !important;
+      }
+      
+      .stackedit__html h2 {
+        font-size: 2rem !important;
+      }
+      
+      .stackedit__html h3 {
+        font-size: 1.8rem !important;
+      }
+      
+      .stackedit__html p {
+        font-size: 1.4rem !important;
+        line-height: 1.6 !important;
+      }
+      
+      .last-updated {
+        font-size: 1.2rem !important;
+        text-align: center !important;
       }
     }
     
@@ -524,6 +584,7 @@ Subjects that I'm particularly fond of:</p>
       }
     });
     
+
     // Show/hide sidebar based on scroll position
     window.addEventListener('scroll', function() {
       const scrollPosition = window.scrollY;
