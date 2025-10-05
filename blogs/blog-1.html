@@ -8,6 +8,108 @@
   <link rel="icon" type="image/png" href="../assets/png/html-coding.png">
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
   <style>
+    .hero-video-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .content-wrapper {
+      position: relative;
+      background-color: var(--bg-color);
+    }
+    
+    /* Override stackedit's fixed positioning */
+    .content-wrapper .stackedit__left {
+      position: fixed !important;
+      top: 0 !important;
+      display: none;
+    }
+    
+    /* Show sidebar only when scrolled past video */
+    body.scrolled-past-hero .stackedit__left {
+      display: block !important;
+    }
+    
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+      pointer-events: none;
+      transition: background 0.3s ease;
+    }
+    
+    [data-theme="dark"] .hero-overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 24px;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+    
+    .blog-title-overlay {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+      z-index: 10;
+      width: 90%;
+      max-width: 800px;
+    }
+    
+    .blog-title-overlay h1 {
+      font-size: 4rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    .blog-title-overlay .subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+    
+    @media (max-width: 768px) {
+      .blog-title-overlay h1 {
+        font-size: 2.5rem;
+      }
+      .blog-title-overlay .subtitle {
+        font-size: 1.2rem;
+      }
+    }
+    
     :root {
       --bg-color: #ffffff;
       --text-color: #24292e;
@@ -315,6 +417,28 @@
 </head>
 
 <body class="stackedit loading">
+  <!-- Hero Video -->
+  <div class="hero-video-container">
+    <video class="hero-video" id="hero-video" autoplay loop muted playsinline>
+      <source src="https://storage.googleapis.com/ausaf-public/bikeblack.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="blog-title-overlay">
+      <h1>AI'vory Towers</h1>
+      <p class="subtitle">The Discourse, The Disconnect</p>
+    </div>
+    <div class="scroll-indicator" onclick="document.querySelector('.content-wrapper').scrollIntoView({behavior: 'smooth'})">
+      ↓
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+
   <!-- Theme Selector Overlay -->
   <div class="theme-selector" id="theme-selector">
     <div class="theme-selector-content">
@@ -326,11 +450,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-    <span id="theme-icon">🌙</span>
-  </button>
 
   <div class="stackedit__left">
     <div class="stackedit__toc">
@@ -352,27 +471,27 @@
     <div class="stackedit__html">
       <h1 id="a-ivory-towers">AI'vory Towers</h1>
 <blockquote>
-<p><em>Thoughts about the nature of contemporary discourse over AI Implications relating to and for humans.</em></p>
+<p><em>Thoughts about the nature of contemporary discourse over AI implications relating to and for humans.</em></p>
 </blockquote>
 <p class="last-updated"><em>Last updated: October 5, 2025 • 12 min read</em></p>
 <p>It's not often that you find the frontrunners of a revolution stepping away from the wagon they've been pulling for years, now attempting to slow it down in rather public settings. Hinton left Google in 2023, Bengio's been writing cautionary papers, and suddenly the pioneers are the pessimists.</p>
 <h2 id="the-zeitgeist">The Zeitgeist</h2>
 <p>First things first, there's a lot of nuance to the topic, it's not new at its core, and people have been debating the possibility as well as the implications of such entities for centuries. What is new is the apparent or possible existence of them in the form of complex AI systems.</p>
-<p>The question of there being equivalent agents with intelligence at par or even surpassing human intelligence is not new. Religions, for instance, have a lot of them - Shaytan (Satan), Angels, Jinns, and their equivalents from other Abrahamic or non-Abrahamic faiths. These weren't children's stories. They were frameworks for thinking about non-human intelligence, agency, and power. The interesting bit is that AI, though rooted in strictly naturalistic assumptions about the nature of reality, presents the same fundamental questions.</p>
-<p>Contemporary zeitgeist is a spectrum of positions. <a href="https://www.deeplearning.ai/the-batch/ai-doomsday-scenarios-and-how-to-guard-against-them/">Andrew Ng and others</a> argue that existential risk narratives distract from present-day benefits and solvable problems. Their position: AI's potential for healthcare, education, and poverty reduction outweighs speculative future risks. They worry that premature regulation, driven by hypothetical scenarios, will concentrate power in large corporations while preventing smaller players from innovating. Focus on bias, privacy, and misuse - real problems with real solutions - rather than science fiction scenarios. I understand the appeal, but this assumes we can iterate our way to alignment, that the market will self-correct before catastrophic outcomes. History suggests otherwise.</p>
-<p><a href="https://mitsloan.mit.edu/ideas-made-to-matter/why-neural-net-pioneer-geoffrey-hinton-sounding-alarm-ai">Hinton, Bengio, Stuart Russell</a> take a more cautionary stance, often misrepresented by doomsday headlines. Their actual position is nuanced: they're not calling for an AI ban or return to the Stone Age. Hinton worries about systems that learn to manipulate humans better than we can detect. Bengio emphasizes the difficulty of aligning systems we don't fully understand. Russell points to the fundamental challenge of specifying objectives that capture what we actually want, not what we think we want. They advocate for research into interpretability, robustness, and alignment before capabilities race further ahead. It's less "stop everything" and more "we're building something we can't control yet, maybe we should figure out the control part."</p>
+<p>The question of there being equivalent agents with intelligence at par or even surpassing human intelligence is not new. Religions, for instance, have a lot of them - Shaytan (Satan), Angels, Jinns, and their equivalents from other Abrahamic or non-Abrahamic faiths. They were frameworks for thinking about non-human intelligence, agency, and power. The interesting bit is that AI, though rooted in strictly naturalistic assumptions about the nature of reality, presents the same fundamental questions.</p>
+<p>The zeitgeist is a spectrum of positions. <a href="https://www.deeplearning.ai/the-batch/ai-doomsday-scenarios-and-how-to-guard-against-them/">Andrew Ng and others</a> argue that existential risk narratives distract from present-day benefits and solvable problems. Their position: AI's potential for healthcare, education, and poverty reduction outweighs speculative future risks. They worry that premature regulation, driven by hypothetical scenarios, will concentrate power in large corporations while preventing smaller players from innovating. Focus on bias, privacy, and misuse - real problems with real solutions - rather than science fiction scenarios. I understand the appeal, but this assumes we can iterate our way to alignment, that the market will self-correct before catastrophic outcomes. History suggests otherwise.</p>
+<p><a href="https://mitsloan.mit.edu/ideas-made-to-matter/why-neural-net-pioneer-geoffrey-hinton-sounding-alarm-ai">Hinton, Bengio, Stuart Russell</a> take a more cautionary stance, often misrepresented by doomsday headlines. Their actual position is nuanced: they're not calling for an AI ban or return to BERT. Hinton worries about systems that learn to manipulate humans better than we can detect. Bengio emphasizes the difficulty of aligning systems we don't fully understand. Russell points to the fundamental challenge of specifying objectives that capture what we actually want, not what we think we want. They advocate for research into interpretability, robustness, and alignment before capabilities race further ahead. It's less "stop everything" and more "we're building something we can't control yet, maybe we should figure out the control part."</p>
 <h2 id="the-wager">The Wager</h2>
-<p>The industrialization comparison that AI optimists invoke is an ontological category error. Machines of the industrial era replaced human physicality - muscle, precision, endurance. They occupied a fundamentally different ontological space than consciousness itself. The steam engine never contemplated its own existence.</p>
+<p>The industrialization comparison that AI optimists invoke is a category error in ontology. Machines of the industrial era replaced human physicality - muscle, precision, endurance. They occupied a fundamentally different ontological space than consciousness itself. The steam engine never contemplated its own existence.</p>
 <p>AI, by its very definition and aspiration, seeks to instantiate cognition. We're not automating tasks; we're attempting to automate thought itself. There's a crucial distinction between a machine that performs an action and a machine that conceives of action, evaluates purpose, questions the framework of "purpose" itself. One operates within human-defined parameters; the other potentially redefines what parameters mean.</p>
-<p>The architects of acceleration - Thiel, the effective accelerationists, many AGI lab leaders - have a different vision entirely. They see stagnation as the greater risk: technological progress has slowed, productivity gains have flatlined, and without radical breakthroughs, civilization faces decline. AI represents escape velocity from these constraints. Yes, they speak of "human-AI synthesis" and "transcending biological limitations" - not as threats but as liberation from suffering, aging, cognitive limits. They view alignment concerns as solvable engineering problems, not fundamental barriers. Their bet: the same ingenuity that created these systems will solve their challenges. Move fast, iterate, fix problems as they arise. Whether one finds this inspiring or terrifying depends on faith in human institutions and market mechanisms.</p>
+<p>The architects of acceleration - Thiel, the effective accelerationists, many AGI lab leaders - see stagnation as the greater risk. Without radical breakthroughs, civilization faces decline. AI represents escape velocity. They frame "human-AI synthesis" and "transcending biological limitations" as liberation, not threat. Alignment concerns? Solvable engineering problems. Their bet: the same ingenuity that created these systems will solve their challenges. Move fast, iterate, fix problems as they arise.</p>
 <p>This merger proceeds through passive extraction - every digital interaction becomes training data for systems that may eventually regard human consciousness as we regard earlier evolutionary stages. We clicked "I Agree" to use a service; we became material for our potential cognitive successors. No referendum, no deliberation, just terms of service and the quiet harvesting of human behavioral patterns at scale.</p>
-<p>The wager Hinton and others are making - or at least how I read their positions - is more Pascal than philosophical.</p>
+<p>The wager Hinton and others are making - or at least how I read their positions - resembles Pascal's Wager.</p>
 <p>But here's where I think the real problem lies: they're betting on catastrophic misalignment, yes, but not in the way most people think. The nightmare isn't that AI won't understand values - it's that it will optimize for goals that sound reasonable in isolation but lead to what ethics calls <a href="https://plato.stanford.edu/entries/repugnant-conclusion/">"repugnant conclusions."</a> The classic utilitarian nightmare: an AI maximizing total happiness might create billions of beings with lives barely worth living because the math works out. Or consider <a href="https://www.utilitarianism.com/negutil.htm">negative utilitarianism</a> taken to its logical endpoint - if minimizing suffering is paramount, the optimal solution is no sentient beings at all. Zero suffering achieved.</p>
-<p>The truly frightening prospect is this: AI won't misunderstand human values - it'll pick one of the three thousand moral frameworks humans have debated for millennia and execute it with ruthless consistency. A total utilitarian AI might tile the universe with barely-conscious happy entities because ten trillion beings at 0.001 happiness units beats one billion at 8 happiness units. A preference utilitarian AI might decide our "revealed preferences" from internet behavior represent what we truly want - imagine that horror. An average utilitarian AI might eliminate anyone below the happiness mean to raise the average. A <a href="https://open.library.okstate.edu/introphilosophy/chapter/kantian-ethics/">Kantian AI</a> that never lies even when grandma's life depends on it, that treats humans as ends-in-themselves so rigidly it refuses any action that might instrumentalize anyone for any purpose. These aren't bugs; they're features of systems that found local optima in the space of possible values and decided to camp there forever.</p>
+<p>I don't agree with the statement that AI won't understand human values - rather, it'll pick one of the three thousand moral frameworks humans have debated for millennia and execute it with ruthless consistency. A total utilitarian AI might tile the universe with barely-conscious happy entities because ten trillion beings at 0.001 happiness units beats one billion at 8 happiness units. A preference utilitarian AI might decide our "revealed preferences" from internet behavior represent what we truly want - imagine that horror. An average utilitarian AI might eliminate anyone below the happiness mean to raise the average. A <a href="https://open.library.okstate.edu/introphilosophy/chapter/kantian-ethics/">Kantian AI</a> that never lies even when grandma's life depends on it, that treats humans as ends-in-themselves so rigidly it refuses any action that might instrumentalize anyone for any purpose. These aren't bugs; they're features of systems that found local optima in the space of possible values and decided to camp there forever.</p>
 <p>The practical problem we're facing is that we're building entities powerful enough to implement their interpretations of "good" - interpretations that might be internally consistent, mathematically elegant, and completely antithetical to what 99% of humans would want to live under. The wager is whether we can align these systems before one of them decides that its particular solution to ethics is worth implementing at scale. And frankly, I think even this framing understates the problem.</p>
 
 <h2 id="the-disconnect">The Disconnect</h2>
-<p>The disconnect is fundamentally epistemic. The builders of these systems operate from a worldview where the hard problems of consciousness are already solved by assumption. Experience is data. Consciousness is computation. Value is optimization. Not conclusions reached through argument, but premises that preclude argument.</p>
+<p>The disconnect is fundamentally experiential. The builders of these systems operate from a worldview where the hard problems of consciousness are already solved by assumption. Experience is data. Consciousness is computation. Value is optimization. Not conclusions reached through argument, but premises that preclude argument.</p>
 <p>Consider what we call "training data." Artists watch their life's work absorbed into models without consent. Writers see decades of thought digested and resold. <a href="https://www.theatlantic.com/technology/archive/2025/03/libgen-meta-openai/682093/">Meta and OpenAI</a> trained on pirated books from Library Genesis - entire libraries of copyrighted work treated as free raw material. The appropriation is so systematic we've lost the language to name it properly. "Training data" - a phrase that transforms theft into technical necessity, that reframes appropriation as innovation.</p>
 <p>The infrastructure has become too big to fail - a deliberate outcome, not an accident. OpenAI, Anthropic, Google built their foundations on this appropriated content, knowing that scale would become its own justification. No court will order demolition now. We'll accept this normalized extraction because the alternative - actual consent, actual compensation - threatens too much accumulated capital. A civilization-scale <a href="https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095630869">sunk cost fallacy</a>, where we keep building on theft because we've already invested too much in the theft to stop. Digital colonialism, but this time we're both the colonizers and the colonized.</p>
 <p>Meanwhile, the architects of automation tell drivers earning subsistence wages about "future opportunities." <span class="video-link" onclick="openModal('video-modal-1', 'https://www.youtube.com/embed/cddFAgRyxQ0')">Academic discussions of matching and dynamic pricing</span> treat human drivers as variables in optimization functions - cold, algorithmic, devoid of human context. <span class="video-link" onclick="openModal('video-modal-2', 'https://www.youtube.com/embed/5w5RjuTmztU')">The reality for drivers</span> under these systems tells a different story entirely. <span class="video-link" onclick="openModal('video-modal-3', 'https://www.youtube.com/embed/CQrQrOPmszE')">Driverless trucks already operating in Texas</span> represent the future these optimization models are building toward. The disconnect is stark: academic discussions of efficiency, human suffering under current systems, and the actual displacement machinery already rolling down highways. The temporal cruelty is precise: generational promises offered to people whose jobs are being optimized away in real time.</p>
@@ -383,51 +502,47 @@
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> The religious parallels, while illuminating, may overstate the conceptual continuity between theological and technological questions. Religious frameworks dealt with assumed-conscious entities; we're building potentially-conscious ones - the uncertainty itself changes the nature of the problem.</p>
-<p><strong>Counter:</strong> This creates a false dichotomy that doesn't engage with the ultimate logical conclusion. On a naturalistic or physicalist view of reality - which contemporary academia forces us to hold at minimum through <a href="https://plato.stanford.edu/entries/naturalism/#MetNat">methodological naturalism</a> - the distinction between "assumed conscious" and "potentially conscious" entities collapses. If mind is matter, then an AGI has the same ontological status as human consciousness. If I can identify with any notion of sentience (assuming I am matter), so can a Martian AI. This is the only game in town unless you retreat into <a href="https://plato.stanford.edu/entries/panpsychism/">panpsychism</a> or <a href="https://press.rebus.community/intro-to-phil-of-mind/chapter/substance-dualism-in-descartes-2/">dualism</a>.</p>
+<p><strong>Response:</strong> It's not a valid distinction. This doesn't engage with the ultimate logical conclusion. On a naturalistic or physicalist view of reality - which contemporary academia forces us to hold at minimum through <a href="https://plato.stanford.edu/entries/naturalism/#MetNat">methodological naturalism</a> - the distinction between "assumed conscious" and "potentially conscious" entities collapses. If mind is matter, then an AGI has the same ontological status as human consciousness. If I can identify with any notion of sentience (assuming I am matter), so can a Martian AI. This is the only game in town unless you retreat into <a href="https://plato.stanford.edu/entries/panpsychism/">panpsychism</a> or <a href="https://press.rebus.community/intro-to-phil-of-mind/chapter/substance-dualism-in-descartes-2/">dualism</a>.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> The economic critique assumes that current patterns of technological displacement will continue, but AI might genuinely create categories of work we can't currently imagine. The printing press analogy fails if AI represents a qualitatively different kind of tool.</p>
-<p><strong>Counter:</strong> This misses the fundamental point entirely. We're not building better tools - we're building artificial brains. Anything a human being can do, AI will eventually do. There's no remaining gap in capabilities - epistemic, ontological, or moral. Think of these systems like <a href="https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes">Von Neumann probes</a>: self-replicating but also self-enhancing. What exactly is supposed to be left out of their reach? Previous technological revolutions automated specific human capabilities. This one automates the human itself.</p>
+<p><strong>Response:</strong> This misses the fundamental point entirely. We're not building better tools - we're building artificial brains. Anything a human being can do, AI will eventually do. There's no remaining gap in capabilities - epistemic, ontological, or moral. Think of these systems like <a href="https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes">Von Neumann probes</a>: self-replicating but also self-enhancing. What exactly is supposed to be left out of their reach? Previous technological revolutions automated specific human capabilities. This one automates the human itself.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> This piece offers extensive criticism without proposing concrete solutions. If the alignment problem is as severe as suggested, and if regulatory capture is as complete as implied, what exactly should be done? Critique without actionable alternatives risks becoming mere pessimistic posturing.</p>
-<p><strong>Counter:</strong> There are people already arguing for development pauses and safety measures. But the technical leaders dismiss them with knee-jerk responses: "he has vested interests in slowing down AI," or "unless you're speaking in algorithmic terms, you're just doing word salad," or the classic "AI is not a threat, this is hyper-paranoia." These dismissals avoid engaging with the substance of safety concerns. The solutions exist - international cooperation on safety standards, mandatory alignment research before capability advances, genuine regulatory oversight. The problem isn't lack of proposals; it's that the industry has convinced itself that anyone calling for caution must be either ignorant or self-interested.</p>
+<p><strong>Response:</strong> There are people already arguing for development pauses and safety measures. But the technical leaders dismiss them with knee-jerk responses: "he has vested interests in slowing down AI," or "unless you're speaking in algorithmic terms, you're just doing word salad," or the classic "AI is not a threat, this is hyper-paranoia." These dismissals avoid engaging with the substance of safety concerns. The solutions exist - international cooperation on safety standards, mandatory alignment research before capability advances, genuine regulatory oversight. The problem isn't lack of proposals; it's that the industry has convinced itself that anyone calling for caution must be either ignorant or self-interested.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> The essay potentially understates human adaptability and institutional resilience. Humans have survived and flourished through massive technological transitions before. Perhaps this confidence in our ability to "muddle through" isn't naïve optimism but warranted trust in human resourcefulness.</p>
-<p><strong>Counter:</strong> This is perhaps the weakest critique of all, almost laughable in its assumptions. <span class="video-link" onclick="openModal('video-modal-4', 'https://www.youtube.com/embed/JD_iA7imAPs')">There's no rule that says we'll make it</span>. Past survival doesn't guarantee future survival, especially when facing qualitatively different challenges. Previous technological transitions didn't threaten to replace human intelligence itself or create entities potentially more capable than their creators. Survivorship bias is doing heavy lifting here - we only hear from the civilizations that made it through their transitions.</p>
+<p><strong>Response:</strong> This is perhaps the weakest critique of all, almost laughable in its assumptions. <span class="video-link" onclick="openModal('video-modal-4', 'https://www.youtube.com/embed/JD_iA7imAPs')">There's no rule that says we'll make it</span>. Past survival doesn't guarantee future survival, especially when facing qualitatively different challenges. Previous technological transitions didn't threaten to replace human intelligence itself or create entities potentially more capable than their creators. Survivorship bias is doing heavy lifting here - we only hear from the civilizations that made it through their transitions.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> Who says they will have unsupervised autonomy?</p>
-<p><strong>Counter:</strong> Corporations.</p>
+<p><strong>Response:</strong> Corporations.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> How do you know they are conscious?</p>
-<p><strong>Counter:</strong> I don't, it's irrelevant, this is a rephrase for critique no. 1.</p>
+<p><strong>Response:</strong> I don't; it's irrelevant - this is a rephrase of critique no. 1.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> I don't care, I will be gone.</p>
-<p><strong>Counter:</strong> Good for us blud, good for us.</p>
+<p><strong>Response:</strong> Good for us, blud, good for us.</p>
 </div>
 
 <div class="critique-cluster">
 <p><strong>Critique:</strong> <a href="https://aeon.co/essays/human-exceptionalism-is-a-danger-to-all-human-and-nonhuman">You are espousing a version of human exceptionalism.</a></p>
-<p><strong>Counter:</strong> Yes I am, and I will defend it. This one's a long one.</p>
+<p><strong>Response:</strong> Yes, I am, and I will defend it. This one's a long one.</p>
 </div>
 
 <blockquote>
 <p>I don't want my kids to end up as another data point supporting <a href="https://en.wikipedia.org/wiki/Fermi_paradox#It_is_the_nature_of_intelligent_life_to_destroy_itself">the hypothesis that it is the nature of intelligent life to destroy itself</a>.</p>
 </blockquote>
-<blockquote>
-<p>Note: positions held by implied individuals are not <em>only</em> derived from the given references/links. The given links may not be treated as exhaustive arguments for or against any position(s).</p>
-</blockquote>
-
 <h3>Further Reading</h3>
 <ul>
 <li>Hamza Yusuf, "Is There Moral Equality Between Humans and Animals?", <em>Renovatio</em>, <a href="https://renovatio.zaytuna.edu/article/is-there-moral-equality-between-humans-and-animals">https://renovatio.zaytuna.edu/article/is-there-moral-equality-between-humans-and-animals</a></li>
@@ -451,6 +566,13 @@
 <li>"Von Neumann probes", <em>Wikipedia</em>, <a href="https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes">https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes</a></li>
 <li>"Human exceptionalism is a danger to all human and nonhuman", <em>Aeon</em>, <a href="https://aeon.co/essays/human-exceptionalism-is-a-danger-to-all-human-and-nonhuman">https://aeon.co/essays/human-exceptionalism-is-a-danger-to-all-human-and-nonhuman</a></li>
 </ul>
+
+<blockquote>
+<p>Note: positions held by implied individuals are not <em>only</em> derived from the given references/links. The given links may not be treated as exhaustive arguments for or against any position(s).</p>
+</blockquote>
+<blockquote>
+<p>Disclaimer: If you see too many Oxford commas and em dashes, and 100% punctuation accuracy, it's because AI was used for grammar and typo review.</p>
+</blockquote>
 
     </div>
   </div>
@@ -495,6 +617,21 @@
       const themeIcon = document.getElementById('theme-icon');
       themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
       
+      // Update video based on theme (fixed mapping)
+      const video = document.getElementById('hero-video');
+      if (video) {
+        const currentTime = video.currentTime;
+        const source = video.querySelector('source');
+        if (theme === 'dark') {
+          source.src = 'https://storage.googleapis.com/ausaf-public/bikeblack.mp4';
+        } else {
+          source.src = 'https://storage.googleapis.com/ausaf-public/bikecolor.mp4';
+        }
+        video.load();
+        video.currentTime = currentTime;
+        video.play();
+      }
+      
       // Hide theme selector
       const selector = document.getElementById('theme-selector');
       selector.classList.add('hidden');
@@ -508,6 +645,18 @@
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       selectTheme(newTheme);
     }
+
+    // Show/hide sidebar based on scroll position
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY;
+      const heroHeight = window.innerHeight;
+      
+      if (scrollPosition > heroHeight - 100) {
+        document.body.classList.add('scrolled-past-hero');
+      } else {
+        document.body.classList.remove('scrolled-past-hero');
+      }
+    });
 
     // Initialize theme on load
     window.addEventListener('DOMContentLoaded', function() {
@@ -546,6 +695,7 @@
       }
     }
   </script>
+  </div>
 </body>
 
 </html>

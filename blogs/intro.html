@@ -31,11 +31,103 @@
       line-height: 1.6;
     }
     
+    .hero-video-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+      pointer-events: none;
+      transition: background 0.3s ease;
+    }
+    
+    [data-theme="dark"] .hero-overlay {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    }
+    
+    .blog-title-overlay {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+      z-index: 10;
+      width: 90%;
+      max-width: 800px;
+    }
+    
+    .blog-title-overlay h1 {
+      font-size: 4rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    .blog-title-overlay .subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 24px;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .blog-title-overlay h1 {
+        font-size: 2.5rem;
+      }
+      .blog-title-overlay .subtitle {
+        font-size: 1.2rem;
+      }
+    }
+    
+    .content-wrapper {
+      position: relative;
+      background-color: #000;
+    }
+    
     .stackedit {
       background-color: #000 !important;
     }
     
-    .stackedit__left {
+    /* Override stackedit's fixed positioning */
+    .content-wrapper .stackedit__left {
       background-color: #111 !important;
       border-right: 1px solid #333 !important;
       position: fixed !important;
@@ -44,6 +136,131 @@
       width: 250px !important;
       height: 100vh !important;
       overflow-y: auto !important;
+      display: none;
+    }
+    
+    /* Show sidebar only when scrolled past video */
+    body.scrolled-past-hero .stackedit__left {
+      display: block !important;
+    }
+    
+    /* Theme colors */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #24292e;
+      --border-color: #e1e4e8;
+    }
+    
+    [data-theme="dark"] {
+      --bg-color: #0d1117;
+      --text-color: #c9d1d9;
+      --border-color: #30363d;
+    }
+    
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      background: var(--bg-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Theme selector modal */
+    .theme-selector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+    
+    .theme-selector.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .theme-selector-content {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .theme-selector h2 {
+      color: #24292e;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+    
+    .theme-selector p {
+      color: #586069;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    
+    .theme-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    
+    .theme-btn {
+      padding: 12px 24px;
+      border: 2px solid #e1e4e8;
+      background: #ffffff;
+      color: #24292e;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      min-width: 140px;
+    }
+    
+    .theme-btn:hover {
+      border-color: #0366d6;
+      background: #0366d6;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    
+    /* Loading state */
+    .loading::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      pointer-events: none;
+    }
+    
+    .loading .theme-selector {
+      display: flex !important;
     }
     
     .stackedit__toc {
@@ -163,7 +380,41 @@
   </style>
 </head>
 
-<body class="stackedit">
+<body class="stackedit loading">
+  <!-- Theme Selector Modal -->
+  <div class="theme-selector" id="theme-selector">
+    <div class="theme-selector-content">
+      <h2>Choose your reading preference</h2>
+      <p>Select a theme for the best reading experience</p>
+      <div class="theme-buttons">
+        <button class="theme-btn" onclick="selectTheme('light')">☀️ Light Mode</button>
+        <button class="theme-btn" onclick="selectTheme('dark')">🌙 Dark Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+  
+  <!-- Hero Video -->
+  <div class="hero-video-container">
+    <video class="hero-video" id="hero-video" autoplay loop muted playsinline>
+      <source src="https://storage.googleapis.com/ausaf-public/subtleblack.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="blog-title-overlay">
+      <h1>Intro</h1>
+      <p class="subtitle">Little about me, you and Us 👉👈</p>
+    </div>
+    <div class="scroll-indicator" onclick="document.querySelector('.content-wrapper').scrollIntoView({behavior: 'smooth'})">
+      ↓
+    </div>
+  </div>
+
+  <div class="content-wrapper">
   <div class="stackedit__left">
     <div class="stackedit__toc">
       
@@ -180,6 +431,7 @@
   <div class="stackedit__right">
     <div class="stackedit__html">
       <h1 id="intro-about-me">Intro about me,</h1>
+<p style="color: #999; font-style: italic; font-size: 1.4rem; margin-bottom: 2rem;">Last updated: Sept 2023 • 2 min read</p>
 <blockquote>
 <p>What really counts are good endings, not flawed beginnings.<br>
 ~ Ibn Taymiyyah</p>
@@ -217,6 +469,73 @@ Subjects that I'm particularly fond of:</p>
 <p>The views I express are solely my own and do not in any way represent any institute, organization, or community I may be associated with, not that you care but still wanted to say it out loud.</p>
     </div>
   </div>
+  </div>
+  
+  <script>
+    // Theme management
+    function selectTheme(theme) {
+      document.body.classList.remove('loading');
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('blog-theme', theme);
+      
+      // Update theme icon
+      const themeIcon = document.getElementById('theme-icon');
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      
+      // Update video based on theme (fixed mapping)
+      const video = document.getElementById('hero-video');
+      if (video) {
+        const currentTime = video.currentTime;
+        const source = video.querySelector('source');
+        if (theme === 'dark') {
+          source.src = 'https://storage.googleapis.com/ausaf-public/subtleblack.mp4';
+        } else {
+          source.src = 'https://storage.googleapis.com/ausaf-public/subtlecolor.mp4';
+        }
+        video.load();
+        video.currentTime = currentTime;
+        video.play();
+      }
+      
+      // Hide theme selector
+      const selector = document.getElementById('theme-selector');
+      selector.classList.add('hidden');
+      setTimeout(() => {
+        selector.style.display = 'none';
+      }, 300);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      selectTheme(newTheme);
+    }
+
+    // Initialize theme on load
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('blog-theme');
+      
+      if (savedTheme) {
+        selectTheme(savedTheme);
+      } else {
+        setTimeout(() => {
+          document.body.classList.remove('loading');
+        }, 500);
+      }
+    });
+    
+    // Show/hide sidebar based on scroll position
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY;
+      const heroHeight = window.innerHeight;
+      
+      if (scrollPosition > heroHeight - 100) {
+        document.body.classList.add('scrolled-past-hero');
+      } else {
+        document.body.classList.remove('scrolled-past-hero');
+      }
+    });
+  </script>
 </body>
 
 </html>

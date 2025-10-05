@@ -17,6 +17,53 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
+    
+    <style>
+      .blog-cards-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        margin-top: 5rem;
+      }
+      
+      .blog_row {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .blog_row:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      
+      .blog-meta {
+        font-size: 1.3rem;
+        color: rgba(245, 245, 220, 0.7);
+        margin-bottom: 1rem;
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .blog-tags {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .blog-tag {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        background: rgba(245, 245, 220, 0.1);
+        border: 1px solid rgba(245, 245, 220, 0.2);
+        border-radius: 5px;
+        font-size: 1.3rem;
+        color: #F5F5DC;
+        margin-right: 0.8rem;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -87,52 +134,69 @@
           </span>
         </h2>
 
-        <div class="projects__content">
-          <div class="blog_row">
-            <div class="blog_row-img-cont">
-              <img
-                src="../assets/thumbs/7.png"
-                alt="Random Pic"
-                class="blog_row-img"
-                loading="lazy"
-              />
-            </div>
-            <div class="blog_row-content">
-              <h3 class="blog_row-content-title"> Intro </h3>
-              <p class="blog_row-content-desc">
-               Little about me, you and Us 👉👈
-              </p>
-              <a
-                href="./intro.html"
-                class="btn btn--med btn--theme dynamicBgClr"
-                target="_blank"
-                >Read</a
-              >
+        <div class="blog-cards-container">
+          <div class="projects__content">
+            <div class="blog_row">
+              <div class="blog_row-img-cont">
+                <img
+                  src="../assets/thumbs/7.png"
+                  alt="Random Pic"
+                  class="blog_row-img"
+                  loading="lazy"
+                />
+              </div>
+              <div class="blog_row-content">
+                <h3 class="blog_row-content-title">Intro</h3>
+                <div class="blog-meta">
+                  <span>Sept 2024</span>
+                  <span>2 min read</span>
+                </div>
+                <p class="blog_row-content-desc">
+                 Little about me, you and Us 👉👈
+                </p>
+                <div class="blog-tags">
+                  <span class="blog-tag">Personal</span>
+                  <span class="blog-tag">Introduction</span>
+                </div>
+                <a
+                  href="./intro.html"
+                  class="btn btn--med btn--theme dynamicBgClr"
+                  >Read</a
+                >
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="projects__content">
-          <div class="blog_row">
-            <div class="blog_row-img-cont">
-              <img
-                src="../assets/thumbs/8.png"
-                alt="Random Pic"
-                class="blog_row-img"
-                loading="lazy"
-              />
-            </div>
-            <div class="blog_row-content">
-              <h3 class="blog_row-content-title"> AI'vory Towers </h3>
-              <p class="blog_row-content-desc">
-               The Discourse, The Disconnect
-              </p>
-              <a
-                href="./blog-1.html"
-                class="btn btn--med btn--theme dynamicBgClr"
-                target="_blank"
-                >Read</a
-              >
+          <div class="projects__content">
+            <div class="blog_row">
+              <div class="blog_row-img-cont">
+                <img
+                  src="../assets/thumbs/8.png"
+                  alt="Random Pic"
+                  class="blog_row-img"
+                  loading="lazy"
+                />
+              </div>
+              <div class="blog_row-content">
+                <h3 class="blog_row-content-title">AI'vory Towers</h3>
+                <div class="blog-meta">
+                  <span>Oct 2025</span>
+                  <span>12 min read</span>
+                </div>
+                <p class="blog_row-content-desc">
+                 The Discourse, The Disconnect - Thoughts about the nature of contemporary discourse over AI implications
+                </p>
+                <div class="blog-tags">
+                  <span class="blog-tag">AI</span>
+                  <span class="blog-tag">Philosophy</span>
+                  <span class="blog-tag">Ethics</span>
+                </div>
+                <a
+                  href="./blog-1.html"
+                  class="btn btn--med btn--theme dynamicBgClr"
+                  >Read</a
+                >
+              </div>
             </div>
           </div>
         </div>
