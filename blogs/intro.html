@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Intro - Mohammad Ausaf</title>
   <link rel="icon" type="image/png" href="../assets/png/html-coding.png">
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -23,12 +24,42 @@
       font-size: 62.5%;
     }
     
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #24292e;
+      --border-color: #e1e4e8;
+      --link-color: #0366d6;
+      --link-hover-color: #0256cc;
+      --blockquote-bg: #f6f8fa;
+      --blockquote-border: #e1e4e8;
+      --code-bg: #f6f8fa;
+      --cluster-bg: #f8f9fa;
+      --cluster-border: #e1e4e8;
+      --modal-bg: rgba(0,0,0,0.8);
+      --tooltip-bg: #333;
+      --tooltip-text: #fff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0d1117;
+      --text-color: #c9d1d9;
+      --border-color: #30363d;
+      --link-color: #58a6ff;
+      --link-hover-color: #79c0ff;
+      --blockquote-bg: #161b22;
+      --blockquote-border: #30363d;
+      --code-bg: #161b22;
+      --cluster-bg: #161b22;
+      --cluster-border: #30363d;
+      --modal-bg: rgba(0,0,0,0.9);
+      --tooltip-bg: #484f58;
+      --tooltip-text: #f0f6fc;
+    }
+    
     body {
-      background-color: #000 !important;
-      color: #F5F5DC !important;
-      font-family: 'Epilogue', Arial, sans-serif !important;
-      font-size: 1.6rem;
-      line-height: 1.6;
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     
     .hero-video-container {
@@ -73,15 +104,30 @@
     }
     
     .blog-title-overlay h1 {
-      font-size: 4rem;
+      font-size: 5.2rem;
       margin-bottom: 10px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      color: white !important;
+      transition: color 0.3s ease;
     }
     
     .blog-title-overlay .subtitle {
-      font-size: 1.5rem;
+      font-size: 1.95rem;
       opacity: 0.9;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      color: white !important;
+      transition: color 0.3s ease;
+    }
+    
+    .blog-title-overlay p {
+      color: white !important;
+      transition: color 0.3s ease;
+    }
+    
+    [data-theme="dark"] .blog-title-overlay h1,
+    [data-theme="dark"] .blog-title-overlay .subtitle,
+    [data-theme="dark"] .blog-title-overlay p {
+      color: var(--text-color) !important;
     }
     
     .scroll-indicator {
@@ -119,12 +165,12 @@
       }
       
       .blog-title-overlay h1 {
-        font-size: 2.5rem;
+        font-size: 3.25rem;
         margin-bottom: 8px;
       }
       
       .blog-title-overlay .subtitle {
-        font-size: 1.2rem;
+        font-size: 1.56rem;
       }
       
       .scroll-indicator {
@@ -179,23 +225,13 @@
     
     .content-wrapper {
       position: relative;
-      background-color: #000;
-    }
-    
-    .stackedit {
-      background-color: #000 !important;
+      background-color: var(--bg-color);
     }
     
     /* Override stackedit's fixed positioning */
     .content-wrapper .stackedit__left {
-      background-color: #111 !important;
-      border-right: 1px solid #333 !important;
       position: fixed !important;
-      left: 0 !important;
       top: 0 !important;
-      width: 250px !important;
-      height: 100vh !important;
-      overflow-y: auto !important;
       display: none;
     }
     
@@ -204,17 +240,23 @@
       display: block !important;
     }
     
-    /* Theme colors */
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #24292e;
-      --border-color: #e1e4e8;
+    /* Apply theme colors */
+    .stackedit__html {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
     }
     
-    [data-theme="dark"] {
-      --bg-color: #0d1117;
-      --text-color: #c9d1d9;
-      --border-color: #30363d;
+    .stackedit__toc {
+      background-color: var(--bg-color) !important;
+      border-right: 1px solid var(--border-color) !important;
+    }
+    
+    .stackedit__toc a {
+      color: var(--text-color) !important;
+    }
+    
+    .stackedit__toc a:hover {
+      color: var(--link-color) !important;
     }
     
     /* Theme toggle button */
@@ -234,10 +276,17 @@
       font-size: 20px;
       transition: all 0.3s ease;
       z-index: 1000;
+      color: var(--text-color);
     }
     
     .theme-toggle:hover {
+      border-color: var(--link-color);
       transform: scale(1.1);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
     }
     
     /* Theme selector modal */
@@ -323,18 +372,17 @@
       display: flex !important;
     }
     
+    .stackedit__left {
+      background-color: var(--bg-color) !important;
+      border-right: 1px solid var(--border-color) !important;
+      left: 0 !important;
+      width: 250px !important;
+      height: 100vh !important;
+      overflow-y: auto !important;
+    }
+    
     .stackedit__toc {
       padding: 2rem;
-    }
-    
-    .stackedit__toc a {
-      color: #F5F5DC !important;
-      text-decoration: none;
-      font-size: 1.4rem;
-    }
-    
-    .stackedit__toc a:hover {
-      color: #fff !important;
     }
     
     .stackedit__toc ul {
@@ -346,70 +394,64 @@
     }
     
     .stackedit__right {
-      background-color: #000 !important;
+      background-color: var(--bg-color) !important;
       margin-left: 250px !important;
       min-height: 100vh !important;
     }
     
     .stackedit__html {
       padding: 4rem;
-      max-width: 80rem;
-      margin: 0 auto;
     }
     
     h1, h2, h3, h4, h5, h6 {
-      color: #F5F5DC !important;
-      font-family: 'Epilogue', Arial, sans-serif !important;
-      margin: 2rem 0 1rem 0;
-      font-weight: 700;
-    }
-    
-    h1 {
-      font-size: 3.2rem;
-    }
-    
-    h2 {
-      font-size: 2.4rem;
+      color: var(--text-color) !important;
     }
     
     p {
-      color: #F5F5DC !important;
-      margin: 1rem 0;
-      font-size: 1.6rem;
-      line-height: 1.7;
-    }
-    
-    ol, ul {
-      margin: 1rem 0;
-      padding-left: 2rem;
+      color: var(--text-color) !important;
     }
     
     li {
-      color: #F5F5DC !important;
-      margin: 0.5rem 0;
+      color: var(--text-color) !important;
+    }
+    
+    a {
+      color: var(--link-color) !important;
+    }
+    
+    a:hover {
+      color: var(--link-hover-color) !important;
     }
     
     blockquote {
-      border-left: 4px solid #F5F5DC !important;
-      background-color: #111 !important;
-      color: #F5F5DC !important;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      font-style: italic;
-    }
-    
-    blockquote p {
-      margin: 0;
+      background-color: var(--blockquote-bg) !important;
+      border-left: 4px solid var(--blockquote-border) !important;
+      color: var(--text-color) !important;
     }
     
     strong {
-      color: #F5F5DC !important;
-      font-weight: 700;
+      color: var(--text-color) !important;
     }
     
     em {
-      color: #F5F5DC !important;
-      font-style: italic;
+      color: var(--text-color) !important;
+    }
+    
+    code {
+      background-color: var(--code-bg) !important;
+      color: var(--text-color) !important;
+    }
+    
+    pre {
+      background-color: var(--code-bg) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+    
+    .last-updated {
+      color: #8b949e !important;
+      font-size: 14px !important;
+      margin: 10px 0 20px 0 !important;
+      text-align: right !important;
     }
     
     @media only screen and (max-width: 768px) {
@@ -418,23 +460,39 @@
         width: 100% !important;
         height: auto !important;
         border-right: none !important;
-        border-bottom: 1px solid #333 !important;
+        border-bottom: 1px solid var(--border-color) !important;
       }
       
       .stackedit__right {
         margin-left: 0 !important;
+        padding: 1rem !important;
       }
       
       .stackedit__html {
-        padding: 2rem;
+        padding: 1rem !important;
+        font-size: 1.4rem !important;
       }
       
-      h1 {
-        font-size: 2.8rem;
+      .stackedit__html h1 {
+        font-size: 2.5rem !important;
       }
       
-      h2 {
-        font-size: 2rem;
+      .stackedit__html h2 {
+        font-size: 2rem !important;
+      }
+      
+      .stackedit__html h3 {
+        font-size: 1.8rem !important;
+      }
+      
+      .stackedit__html p {
+        font-size: 1.4rem !important;
+        line-height: 1.6 !important;
+      }
+      
+      .last-updated {
+        font-size: 1.2rem !important;
+        text-align: center !important;
       }
     }
   </style>
@@ -447,15 +505,45 @@
       <h2>Choose your reading preference</h2>
       <p>Select a theme for the best reading experience</p>
       <div class="theme-buttons">
-        <button class="theme-btn" onclick="selectTheme('light')">☀️ Light Mode</button>
-        <button class="theme-btn" onclick="selectTheme('dark')">🌙 Dark Mode</button>
+        <button class="theme-btn" onclick="selectTheme('light')">Light Mode</button>
+        <button class="theme-btn" onclick="selectTheme('dark')">Dark Mode</button>
       </div>
     </div>
   </div>
 
   <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-    <span id="theme-icon">🌙</span>
+  <button
+    class="theme-toggle"
+    id="theme-toggle"
+    type="button"
+    title="Toggle theme"
+    aria-label="Toggle theme"
+    onclick="toggleTheme()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      class="theme-toggle__around"
+      viewBox="0 0 32 32"
+    >
+      <clipPath id="theme-toggle__around__cutout">
+        <path d="M0 0h42v30a1 1 0 00-16 13H0Z" />
+      </clipPath>
+      <g clip-path="url(#theme-toggle__around__cutout)">
+        <circle cx="16" cy="16" r="8.4" />
+        <g>
+          <circle cx="16" cy="3.3" r="2.3" />
+          <circle cx="27" cy="9.7" r="2.3" />
+          <circle cx="27" cy="22.3" r="2.3" />
+          <circle cx="16" cy="28.7" r="2.3" />
+          <circle cx="5" cy="22.3" r="2.3" />
+          <circle cx="5" cy="9.7" r="2.3" />
+        </g>
+      </g>
+    </svg>
   </button>
   
   <!-- Hero Video -->
@@ -466,8 +554,10 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="blog-title-overlay">
+      <p style="font-size: 1.56rem; margin-bottom: 2px; opacity: 0.8;">اَلسَلامُ عَلَيْكُم</p>
+      <p style="font-size: 0.91rem; margin-bottom: 10px; opacity: 0.7;">(Peace be upon you)</p>
       <h1>Intro</h1>
-      <p class="subtitle">Little about me, you and Us 👉👈</p>
+      <p class="subtitle">A little about me, you and us 👉👈</p>
     </div>
     <div class="scroll-indicator" onclick="document.querySelector('.content-wrapper').scrollIntoView({behavior: 'smooth'})">
       ↓
@@ -479,7 +569,7 @@
     <div class="stackedit__toc">
       
 <ul>
-<li><a href="#intro-about-me">Intro about me,</a>
+<li><a href="#intro-about-me">A little about me</a>
 <ul>
 <li><a href="#some-ws-">Some W's :</a></li>
 </ul>
@@ -490,7 +580,7 @@
   </div>
   <div class="stackedit__right">
     <div class="stackedit__html">
-      <h1 id="intro-about-me">Intro about me,</h1>
+      <h1 id="intro-about-me">A little about me</h1>
 <p style="color: #999; font-style: italic; font-size: 1.4rem; margin-bottom: 2rem;">Last updated: Sept 2023 • 2 min read</p>
 <blockquote>
 <p>What really counts are good endings, not flawed beginnings.<br>
@@ -501,17 +591,17 @@
 <li>
 <p><strong>Who</strong><br>
 I am an AI-ML enthusiast, currently pursuing a degree in Computer Science. I'm deeply passionate about technology, humans, and technology for humans. I'm from a small village in Allahabad, U.P., India.<br>
-I have lived across 5 states, currently living in Bengaluru, working as an MLE.</p>
+I have lived across 5 states, currently living in Bengaluru, working as a Software Engineer (AI).</p>
 </li>
 <li>
 <p><strong>Why</strong><br>
-I have been active on social media in an on-off fashion, right now I'm active on LinkedIn, and I see people putting their lukewarm takes on display and getting no pushback at all. I'm interested in diverse subjects, like Theology, Philosophy, Logic, and Maths among other technical and non-technical subjects. As such, I have opinions on things, and being reasonable in settings like LinkedIn, Reddit or other platforms is not just tough, it's almost daunting. That's <em>why</em> I need a blog, as a normie, I agree with people and I disagree with people, and I like having dialogue with both.</p>
+I have been active on social media in an on-off fashion. Right now, I'm active on LinkedIn, and I see people sharing their lukewarm takes without any pushback. I'm interested in diverse subjects, like Theology, Philosophy, Logic, and Maths among other technical and non-technical subjects. As such, I have opinions on things, and being reasonable in settings like LinkedIn, Reddit, or other platforms is not just tough, it's almost daunting. That's <em>why</em> I need a blog—as a normie, I agree with some people and disagree with others, and I like having dialogue with both.</p>
 <br>
-<p>Not to say I'm not wrong, rather I can be very wrong, very often. That's fun though, we can be educated together.</p>
+<p>That's not to say I'm always right—I can be very wrong, very often. That's fun though, we can be educated together.</p>
 </li>
 <li>
 <p><strong>What</strong><br>
-What will I write about? I don't really know, it's not going to be strictly technical though, there are people who are better (that's a low bar I agree) than me for that. As far as ML/AI is concerned, I love all of it, I believe them to be complex, spectacular yet purely statistical systems unlike human agents (hot take?), however, there are way too many overarching opinions, and zeitgeist that I seriously disagree with.</p>
+What will I write about? I don't really know, it's not going to be strictly technical though, there are people who are better (that's a low bar, I agree) than me for that. As far as ML/AI is concerned, I love all of it, I believe them to be complex, spectacular, yet purely statistical systems unlike human agents (hot take?), however, there are way too many overarching opinions and zeitgeist trends that I seriously disagree with.</p>
 </li>
 <li>
 <p><strong>My Interests</strong><br>
@@ -526,7 +616,7 @@ Subjects that I'm particularly fond of:</p>
 </li>
 </ol>
 
-<p>The views I express are solely my own and do not in any way represent any institute, organization, or community I may be associated with, not that you care but still wanted to say it out loud.</p>
+<p>The views I express are solely my own and do not in any way represent any institute, organization, or community I may be associated with, not that you care, but I still wanted to say it out loud.</p>
     </div>
   </div>
   </div>
@@ -538,9 +628,7 @@ Subjects that I'm particularly fond of:</p>
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('blog-theme', theme);
       
-      // Update theme icon
-      const themeIcon = document.getElementById('theme-icon');
-      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      // Theme icon is now handled by CSS
       
       // Update video based on theme (fixed mapping)
       const video = document.getElementById('hero-video');

@@ -93,12 +93,27 @@
       font-size: 4rem;
       margin-bottom: 10px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      color: white !important;
+      transition: color 0.3s ease;
     }
     
     .blog-title-overlay .subtitle {
       font-size: 1.5rem;
       opacity: 0.9;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      color: white !important;
+      transition: color 0.3s ease;
+    }
+    
+    .blog-title-overlay p {
+      color: white !important;
+      transition: color 0.3s ease;
+    }
+    
+    [data-theme="dark"] .blog-title-overlay h1,
+    [data-theme="dark"] .blog-title-overlay .subtitle,
+    [data-theme="dark"] .blog-title-overlay p {
+      color: var(--text-color) !important;
     }
     
     @media (max-width: 768px) {
@@ -331,11 +346,17 @@
       font-size: 20px;
       transition: all 0.3s ease;
       z-index: 1000;
+      color: var(--text-color);
     }
 
     .theme-toggle:hover {
       border-color: var(--link-color);
       transform: scale(1.1);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
     }
 
     /* Apply theme colors */
@@ -494,6 +515,8 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="blog-title-overlay">
+      <p style="font-size: 1.2rem; margin-bottom: 2px; opacity: 0.8;">اَلسَلامُ عَلَيْكُم</p>
+      <p style="font-size: 0.7rem; margin-bottom: 10px; opacity: 0.7;">(Peace be upon you)</p>
       <h1>AI'vory Towers</h1>
       <p class="subtitle">The Discourse, The Disconnect</p>
     </div>
@@ -504,8 +527,38 @@
 
   <div class="content-wrapper">
   <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-    <span id="theme-icon">🌙</span>
+  <button
+    class="theme-toggle"
+    id="theme-toggle"
+    type="button"
+    title="Toggle theme"
+    aria-label="Toggle theme"
+    onclick="toggleTheme()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      class="theme-toggle__around"
+      viewBox="0 0 32 32"
+    >
+      <clipPath id="theme-toggle__around__cutout">
+        <path d="M0 0h42v30a1 1 0 00-16 13H0Z" />
+      </clipPath>
+      <g clip-path="url(#theme-toggle__around__cutout)">
+        <circle cx="16" cy="16" r="8.4" />
+        <g>
+          <circle cx="16" cy="3.3" r="2.3" />
+          <circle cx="27" cy="9.7" r="2.3" />
+          <circle cx="27" cy="22.3" r="2.3" />
+          <circle cx="16" cy="28.7" r="2.3" />
+          <circle cx="5" cy="22.3" r="2.3" />
+          <circle cx="5" cy="9.7" r="2.3" />
+        </g>
+      </g>
+    </svg>
   </button>
 
   <!-- Theme Selector Overlay -->
@@ -514,8 +567,8 @@
       <h2>Choose your reading preference</h2>
       <p>Select a theme for the best reading experience</p>
       <div class="theme-buttons">
-        <button class="theme-btn" onclick="selectTheme('light')">☀️ Light Mode</button>
-        <button class="theme-btn" onclick="selectTheme('dark')">🌙 Dark Mode</button>
+        <button class="theme-btn" onclick="selectTheme('light')">Light Mode</button>
+        <button class="theme-btn" onclick="selectTheme('dark')">Dark Mode</button>
       </div>
     </div>
   </div>
@@ -615,6 +668,7 @@
 <h3>Further Reading</h3>
 <ul>
 <li>Hamza Yusuf, "Is There Moral Equality Between Humans and Animals?", <em>Renovatio</em>, <a href="https://renovatio.zaytuna.edu/article/is-there-moral-equality-between-humans-and-animals">https://renovatio.zaytuna.edu/article/is-there-moral-equality-between-humans-and-animals</a></li>
+<li>Adler, Mortimer J., "The Difference of Man and the Difference It Makes", <em>Internet Archive</em>, <a href="https://archive.org/details/mortimer-j.-adler-the-difference-of-man-and-the-difference-it-makes-1993-fordham-university-press">https://archive.org/details/mortimer-j.-adler-the-difference-of-man-and-the-difference-it-makes-1993-fordham-university-press</a></li>
 </ul>
 
 <h3>References</h3>
@@ -682,9 +736,7 @@
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('blog-theme', theme);
       
-      // Update theme icon
-      const themeIcon = document.getElementById('theme-icon');
-      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      // Theme icon is now handled by CSS
       
       // Update video based on theme (fixed mapping)
       const video = document.getElementById('hero-video');

@@ -431,7 +431,7 @@ textarea {
   white-space: nowrap;
   transition: all 0.3s ease;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 1px;
   backdrop-filter: blur(10px);
 }

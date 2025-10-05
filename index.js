@@ -82,10 +82,10 @@ if (video && unmuteButton) {
   unmuteButton.addEventListener('click', () => {
     if (video.muted) {
       video.muted = false;
-      unmuteButton.textContent = 'Sound On';
+      unmuteButton.textContent = 'sound on';
     } else {
       video.muted = true;
-      unmuteButton.textContent = 'Sound Off';
+      unmuteButton.textContent = 'sound off';
     }
     updateVideoCursor();
   });
@@ -93,10 +93,10 @@ if (video && unmuteButton) {
   video.addEventListener('click', () => {
     if (video.muted) {
       video.muted = false;
-      unmuteButton.textContent = 'Sound On';
+      unmuteButton.textContent = 'sound on';
     } else {
       video.muted = true;
-      unmuteButton.textContent = 'Sound Off';
+      unmuteButton.textContent = 'sound off';
     }
     updateVideoCursor();
   });
