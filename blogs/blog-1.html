@@ -1,0 +1,551 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI'vory Towers</title>
+  <link rel="icon" type="image/png" href="../assets/png/html-coding.png">
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #24292e;
+      --border-color: #e1e4e8;
+      --link-color: #0366d6;
+      --link-hover-color: #0256cc;
+      --blockquote-bg: #f6f8fa;
+      --blockquote-border: #e1e4e8;
+      --code-bg: #f6f8fa;
+      --cluster-bg: #f8f9fa;
+      --cluster-border: #e1e4e8;
+      --modal-bg: rgba(0,0,0,0.8);
+      --tooltip-bg: #333;
+      --tooltip-text: #fff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0d1117;
+      --text-color: #c9d1d9;
+      --border-color: #30363d;
+      --link-color: #58a6ff;
+      --link-hover-color: #79c0ff;
+      --blockquote-bg: #161b22;
+      --blockquote-border: #30363d;
+      --code-bg: #161b22;
+      --cluster-bg: #161b22;
+      --cluster-border: #30363d;
+      --modal-bg: rgba(0,0,0,0.9);
+      --tooltip-bg: #484f58;
+      --tooltip-text: #f0f6fc;
+    }
+
+    /* Loading state - heavily tinted light mode */
+    .loading {
+      --bg-color: #ffffff;
+      --text-color: #24292e;
+      --border-color: #e1e4e8;
+      --link-color: #0366d6;
+      --link-hover-color: #0256cc;
+      --blockquote-bg: #f6f8fa;
+      --blockquote-border: #e1e4e8;
+      --code-bg: #f6f8fa;
+      --cluster-bg: #f8f9fa;
+      --cluster-border: #e1e4e8;
+      --modal-bg: rgba(0,0,0,0.8);
+      --tooltip-bg: #333;
+      --tooltip-text: #fff;
+    }
+
+    .loading::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* Theme selector modal */
+    .theme-selector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .theme-selector.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .theme-selector-content {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transform: scale(1);
+      transition: transform 0.3s ease;
+    }
+
+    .theme-selector.hidden .theme-selector-content {
+      transform: scale(0.9);
+    }
+
+    .theme-selector h2 {
+      color: #24292e;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .theme-selector p {
+      color: #586069;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .theme-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .theme-btn {
+      padding: 12px 24px;
+      border: 2px solid #e1e4e8;
+      background: #ffffff;
+      color: #24292e;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      min-width: 140px;
+    }
+
+    .theme-btn:hover {
+      border-color: #0366d6;
+      background: #0366d6;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(3, 102, 214, 0.3);
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      background: var(--bg-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--link-color);
+      transform: scale(1.1);
+    }
+
+    /* Apply theme colors */
+    body {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .stackedit__html {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+    }
+
+    .stackedit__toc {
+      background-color: var(--bg-color) !important;
+      border-right: 1px solid var(--border-color) !important;
+    }
+
+    .stackedit__toc a {
+      color: var(--text-color) !important;
+    }
+
+    .stackedit__toc a:hover {
+      color: var(--link-color) !important;
+    }
+
+    blockquote {
+      background-color: var(--blockquote-bg) !important;
+      border-left: 4px solid var(--blockquote-border) !important;
+      color: var(--text-color) !important;
+    }
+
+    a {
+      color: var(--link-color) !important;
+    }
+
+    a:hover {
+      color: var(--link-hover-color) !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-color) !important;
+    }
+
+    code {
+      background-color: var(--code-bg) !important;
+      color: var(--text-color) !important;
+    }
+
+    pre {
+      background-color: var(--code-bg) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    .last-updated {
+      color: #6a737d !important;
+      font-size: 14px !important;
+      margin: 10px 0 20px 0 !important;
+      text-align: right !important;
+    }
+
+    [data-theme="dark"] .last-updated {
+      color: #8b949e !important;
+    }
+    .video-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-bg);
+    }
+    .video-modal-content {
+      position: relative;
+      margin: 5% auto;
+      width: 80%;
+      max-width: 800px;
+      background: #000;
+    }
+    .close-modal {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .close-modal:hover {
+      opacity: 0.7;
+    }
+    .video-link {
+      color: var(--link-color);
+      text-decoration: underline;
+      cursor: pointer;
+      position: relative;
+    }
+    .video-link:hover {
+      color: var(--link-hover-color);
+    }
+    .video-link:hover::after {
+      content: "Click to open popup";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--tooltip-bg);
+      color: var(--tooltip-text);
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 1000;
+      margin-bottom: 5px;
+    }
+    .video-link:hover::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--tooltip-bg);
+      z-index: 1000;
+    }
+    iframe {
+      width: 100%;
+      height: 450px;
+    }
+    .critique-cluster {
+      background-color: var(--cluster-bg);
+      border-left: 4px solid var(--cluster-border);
+      padding: 16px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .critique-cluster p {
+      margin: 8px 0;
+    }
+    .critique-cluster p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body class="stackedit loading">
+  <!-- Theme Selector Overlay -->
+  <div class="theme-selector" id="theme-selector">
+    <div class="theme-selector-content">
+      <h2>Choose your reading preference</h2>
+      <p>Select a theme for the best reading experience</p>
+      <div class="theme-buttons">
+        <button class="theme-btn" onclick="selectTheme('light')">☀️ Light Mode</button>
+        <button class="theme-btn" onclick="selectTheme('dark')">🌙 Dark Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+    <span id="theme-icon">🌙</span>
+  </button>
+
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#a-ivory-towers">AI'vory Towers</a>
+<ul>
+<li><a href="#the-zeitgeist">The Zeitgeist</a></li>
+<li><a href="#the-wager">The Wager</a></li>
+<li><a href="#the-disconnect">The Disconnect</a></li>
+<li><a href="#self-critique">Self-Critique</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="a-ivory-towers">AI'vory Towers</h1>
+<blockquote>
+<p><em>Thoughts about the nature of contemporary discourse over AI Implications relating to and for humans.</em></p>
+</blockquote>
+<p class="last-updated"><em>Last updated: October 5, 2025 • 12 min read</em></p>
+<p>It's not often that you find the frontrunners of a revolution stepping away from the wagon they've been pulling for years, now attempting to slow it down in rather public settings. Hinton left Google in 2023, Bengio's been writing cautionary papers, and suddenly the pioneers are the pessimists.</p>
+<h2 id="the-zeitgeist">The Zeitgeist</h2>
+<p>First things first, there's a lot of nuance to the topic, it's not new at its core, and people have been debating the possibility as well as the implications of such entities for centuries. What is new is the apparent or possible existence of them in the form of complex AI systems.</p>
+<p>The question of there being equivalent agents with intelligence at par or even surpassing human intelligence is not new. Religions, for instance, have a lot of them - Shaytan (Satan), Angels, Jinns, and their equivalents from other Abrahamic or non-Abrahamic faiths. These weren't children's stories. They were frameworks for thinking about non-human intelligence, agency, and power. The interesting bit is that AI, though rooted in strictly naturalistic assumptions about the nature of reality, presents the same fundamental questions.</p>
+<p>Contemporary zeitgeist is a spectrum of positions. <a href="https://www.deeplearning.ai/the-batch/ai-doomsday-scenarios-and-how-to-guard-against-them/">Andrew Ng and others</a> argue that existential risk narratives distract from present-day benefits and solvable problems. Their position: AI's potential for healthcare, education, and poverty reduction outweighs speculative future risks. They worry that premature regulation, driven by hypothetical scenarios, will concentrate power in large corporations while preventing smaller players from innovating. Focus on bias, privacy, and misuse - real problems with real solutions - rather than science fiction scenarios. I understand the appeal, but this assumes we can iterate our way to alignment, that the market will self-correct before catastrophic outcomes. History suggests otherwise.</p>
+<p><a href="https://mitsloan.mit.edu/ideas-made-to-matter/why-neural-net-pioneer-geoffrey-hinton-sounding-alarm-ai">Hinton, Bengio, Stuart Russell</a> take a more cautionary stance, often misrepresented by doomsday headlines. Their actual position is nuanced: they're not calling for an AI ban or return to the Stone Age. Hinton worries about systems that learn to manipulate humans better than we can detect. Bengio emphasizes the difficulty of aligning systems we don't fully understand. Russell points to the fundamental challenge of specifying objectives that capture what we actually want, not what we think we want. They advocate for research into interpretability, robustness, and alignment before capabilities race further ahead. It's less "stop everything" and more "we're building something we can't control yet, maybe we should figure out the control part."</p>
+<h2 id="the-wager">The Wager</h2>
+<p>The industrialization comparison that AI optimists invoke is an ontological category error. Machines of the industrial era replaced human physicality - muscle, precision, endurance. They occupied a fundamentally different ontological space than consciousness itself. The steam engine never contemplated its own existence.</p>
+<p>AI, by its very definition and aspiration, seeks to instantiate cognition. We're not automating tasks; we're attempting to automate thought itself. There's a crucial distinction between a machine that performs an action and a machine that conceives of action, evaluates purpose, questions the framework of "purpose" itself. One operates within human-defined parameters; the other potentially redefines what parameters mean.</p>
+<p>The architects of acceleration - Thiel, the effective accelerationists, many AGI lab leaders - have a different vision entirely. They see stagnation as the greater risk: technological progress has slowed, productivity gains have flatlined, and without radical breakthroughs, civilization faces decline. AI represents escape velocity from these constraints. Yes, they speak of "human-AI synthesis" and "transcending biological limitations" - not as threats but as liberation from suffering, aging, cognitive limits. They view alignment concerns as solvable engineering problems, not fundamental barriers. Their bet: the same ingenuity that created these systems will solve their challenges. Move fast, iterate, fix problems as they arise. Whether one finds this inspiring or terrifying depends on faith in human institutions and market mechanisms.</p>
+<p>This merger proceeds through passive extraction - every digital interaction becomes training data for systems that may eventually regard human consciousness as we regard earlier evolutionary stages. We clicked "I Agree" to use a service; we became material for our potential cognitive successors. No referendum, no deliberation, just terms of service and the quiet harvesting of human behavioral patterns at scale.</p>
+<p>The wager Hinton and others are making - or at least how I read their positions - is more Pascal than philosophical.</p>
+<p>But here's where I think the real problem lies: they're betting on catastrophic misalignment, yes, but not in the way most people think. The nightmare isn't that AI won't understand values - it's that it will optimize for goals that sound reasonable in isolation but lead to what ethics calls <a href="https://plato.stanford.edu/entries/repugnant-conclusion/">"repugnant conclusions."</a> The classic utilitarian nightmare: an AI maximizing total happiness might create billions of beings with lives barely worth living because the math works out. Or consider <a href="https://www.utilitarianism.com/negutil.htm">negative utilitarianism</a> taken to its logical endpoint - if minimizing suffering is paramount, the optimal solution is no sentient beings at all. Zero suffering achieved.</p>
+<p>The truly frightening prospect is this: AI won't misunderstand human values - it'll pick one of the three thousand moral frameworks humans have debated for millennia and execute it with ruthless consistency. A total utilitarian AI might tile the universe with barely-conscious happy entities because ten trillion beings at 0.001 happiness units beats one billion at 8 happiness units. A preference utilitarian AI might decide our "revealed preferences" from internet behavior represent what we truly want - imagine that horror. An average utilitarian AI might eliminate anyone below the happiness mean to raise the average. A <a href="https://open.library.okstate.edu/introphilosophy/chapter/kantian-ethics/">Kantian AI</a> that never lies even when grandma's life depends on it, that treats humans as ends-in-themselves so rigidly it refuses any action that might instrumentalize anyone for any purpose. These aren't bugs; they're features of systems that found local optima in the space of possible values and decided to camp there forever.</p>
+<p>The practical problem we're facing is that we're building entities powerful enough to implement their interpretations of "good" - interpretations that might be internally consistent, mathematically elegant, and completely antithetical to what 99% of humans would want to live under. The wager is whether we can align these systems before one of them decides that its particular solution to ethics is worth implementing at scale. And frankly, I think even this framing understates the problem.</p>
+
+<h2 id="the-disconnect">The Disconnect</h2>
+<p>The disconnect is fundamentally epistemic. The builders of these systems operate from a worldview where the hard problems of consciousness are already solved by assumption. Experience is data. Consciousness is computation. Value is optimization. Not conclusions reached through argument, but premises that preclude argument.</p>
+<p>Consider what we call "training data." Artists watch their life's work absorbed into models without consent. Writers see decades of thought digested and resold. <a href="https://www.theatlantic.com/technology/archive/2025/03/libgen-meta-openai/682093/">Meta and OpenAI</a> trained on pirated books from Library Genesis - entire libraries of copyrighted work treated as free raw material. The appropriation is so systematic we've lost the language to name it properly. "Training data" - a phrase that transforms theft into technical necessity, that reframes appropriation as innovation.</p>
+<p>The infrastructure has become too big to fail - a deliberate outcome, not an accident. OpenAI, Anthropic, Google built their foundations on this appropriated content, knowing that scale would become its own justification. No court will order demolition now. We'll accept this normalized extraction because the alternative - actual consent, actual compensation - threatens too much accumulated capital. A civilization-scale <a href="https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095630869">sunk cost fallacy</a>, where we keep building on theft because we've already invested too much in the theft to stop. Digital colonialism, but this time we're both the colonizers and the colonized.</p>
+<p>Meanwhile, the architects of automation tell drivers earning subsistence wages about "future opportunities." <span class="video-link" onclick="openModal('video-modal-1', 'https://www.youtube.com/embed/cddFAgRyxQ0')">Academic discussions of matching and dynamic pricing</span> treat human drivers as variables in optimization functions - cold, algorithmic, devoid of human context. <span class="video-link" onclick="openModal('video-modal-2', 'https://www.youtube.com/embed/5w5RjuTmztU')">The reality for drivers</span> under these systems tells a different story entirely. <span class="video-link" onclick="openModal('video-modal-3', 'https://www.youtube.com/embed/CQrQrOPmszE')">Driverless trucks already operating in Texas</span> represent the future these optimization models are building toward. The disconnect is stark: academic discussions of efficiency, human suffering under current systems, and the actual displacement machinery already rolling down highways. The temporal cruelty is precise: generational promises offered to people whose jobs are being optimized away in real time.</p>
+<p>This isn't about being anti-technology. We're watching people who've never worried about money design systems that decide who gets to eat. Human suffering becomes "transition costs" in their models, real people become "retraining opportunities" in their papers. They debate whether machines can think while treating actual humans as data points. The problem of other minds solved not through philosophy but through indifference.</p>
+
+
+<h2 id="self-critique">Self-Critique</h2>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> The religious parallels, while illuminating, may overstate the conceptual continuity between theological and technological questions. Religious frameworks dealt with assumed-conscious entities; we're building potentially-conscious ones - the uncertainty itself changes the nature of the problem.</p>
+<p><strong>Counter:</strong> This creates a false dichotomy that doesn't engage with the ultimate logical conclusion. On a naturalistic or physicalist view of reality - which contemporary academia forces us to hold at minimum through <a href="https://plato.stanford.edu/entries/naturalism/#MetNat">methodological naturalism</a> - the distinction between "assumed conscious" and "potentially conscious" entities collapses. If mind is matter, then an AGI has the same ontological status as human consciousness. If I can identify with any notion of sentience (assuming I am matter), so can a Martian AI. This is the only game in town unless you retreat into <a href="https://plato.stanford.edu/entries/panpsychism/">panpsychism</a> or <a href="https://press.rebus.community/intro-to-phil-of-mind/chapter/substance-dualism-in-descartes-2/">dualism</a>.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> The economic critique assumes that current patterns of technological displacement will continue, but AI might genuinely create categories of work we can't currently imagine. The printing press analogy fails if AI represents a qualitatively different kind of tool.</p>
+<p><strong>Counter:</strong> This misses the fundamental point entirely. We're not building better tools - we're building artificial brains. Anything a human being can do, AI will eventually do. There's no remaining gap in capabilities - epistemic, ontological, or moral. Think of these systems like <a href="https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes">Von Neumann probes</a>: self-replicating but also self-enhancing. What exactly is supposed to be left out of their reach? Previous technological revolutions automated specific human capabilities. This one automates the human itself.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> This piece offers extensive criticism without proposing concrete solutions. If the alignment problem is as severe as suggested, and if regulatory capture is as complete as implied, what exactly should be done? Critique without actionable alternatives risks becoming mere pessimistic posturing.</p>
+<p><strong>Counter:</strong> There are people already arguing for development pauses and safety measures. But the technical leaders dismiss them with knee-jerk responses: "he has vested interests in slowing down AI," or "unless you're speaking in algorithmic terms, you're just doing word salad," or the classic "AI is not a threat, this is hyper-paranoia." These dismissals avoid engaging with the substance of safety concerns. The solutions exist - international cooperation on safety standards, mandatory alignment research before capability advances, genuine regulatory oversight. The problem isn't lack of proposals; it's that the industry has convinced itself that anyone calling for caution must be either ignorant or self-interested.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> The essay potentially understates human adaptability and institutional resilience. Humans have survived and flourished through massive technological transitions before. Perhaps this confidence in our ability to "muddle through" isn't naïve optimism but warranted trust in human resourcefulness.</p>
+<p><strong>Counter:</strong> This is perhaps the weakest critique of all, almost laughable in its assumptions. <span class="video-link" onclick="openModal('video-modal-4', 'https://www.youtube.com/embed/JD_iA7imAPs')">There's no rule that says we'll make it</span>. Past survival doesn't guarantee future survival, especially when facing qualitatively different challenges. Previous technological transitions didn't threaten to replace human intelligence itself or create entities potentially more capable than their creators. Survivorship bias is doing heavy lifting here - we only hear from the civilizations that made it through their transitions.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> Who says they will have unsupervised autonomy?</p>
+<p><strong>Counter:</strong> Corporations.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> How do you know they are conscious?</p>
+<p><strong>Counter:</strong> I don't, it's irrelevant, this is a rephrase for critique no. 1.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> I don't care, I will be gone.</p>
+<p><strong>Counter:</strong> Good for us blud, good for us.</p>
+</div>
+
+<div class="critique-cluster">
+<p><strong>Critique:</strong> <a href="https://aeon.co/essays/human-exceptionalism-is-a-danger-to-all-human-and-nonhuman">You are espousing a version of human exceptionalism.</a></p>
+<p><strong>Counter:</strong> Yes I am, and I will defend it. This one's a long one.</p>
+</div>
+
+<blockquote>
+<p>I don't want my kids to end up as another data point supporting <a href="https://en.wikipedia.org/wiki/Fermi_paradox#It_is_the_nature_of_intelligent_life_to_destroy_itself">the hypothesis that it is the nature of intelligent life to destroy itself</a>.</p>
+</blockquote>
+<blockquote>
+<p>Note: positions held by implied individuals are not <em>only</em> derived from the given references/links. The given links may not be treated as exhaustive arguments for or against any position(s).</p>
+</blockquote>
+
+<h3>Further Reading</h3>
+<ul>
+<li>Hamza Yusuf, "Is There Moral Equality Between Humans and Animals?", <em>Renovatio</em>, <a href="https://renovatio.zaytuna.edu/article/is-there-moral-equality-between-humans-and-animals">https://renovatio.zaytuna.edu/article/is-there-moral-equality-between-humans-and-animals</a></li>
+</ul>
+
+<h3>References</h3>
+<ul>
+<li>Arrhenius, Gustaf, Jesper Ryberg, and Torbjörn Tännsjö, "The Repugnant Conclusion", <em>The Stanford Encyclopedia of Philosophy</em>, <a href="https://plato.stanford.edu/entries/repugnant-conclusion/">https://plato.stanford.edu/entries/repugnant-conclusion/</a></li>
+<li>"Concorde fallacy", <em>Oxford Reference</em>, <a href="https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095630869">https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095630869</a></li>
+<li>"OpenAI and Meta Trained AI Models on Pirated Books", <em>The Atlantic</em>, <a href="https://www.theatlantic.com/technology/archive/2025/03/libgen-meta-openai/682093/">https://www.theatlantic.com/technology/archive/2025/03/libgen-meta-openai/682093/</a></li>
+<li>"Negative Utilitarianism", <em>Utilitarianism.com</em>, <a href="https://www.utilitarianism.com/negutil.htm">https://www.utilitarianism.com/negutil.htm</a></li>
+<li>"Kantian Ethics", <em>Introduction to Philosophy</em>, Oklahoma State University, <a href="https://open.library.okstate.edu/introphilosophy/chapter/kantian-ethics/">https://open.library.okstate.edu/introphilosophy/chapter/kantian-ethics/</a></li>
+<li>"Matching and Dynamic Pricing in Ride-Hailing Platforms", <em>YouTube</em>, <a href="https://youtu.be/cddFAgRyxQ0">https://youtu.be/cddFAgRyxQ0</a></li>
+<li>"The Reality for Drivers", <em>YouTube</em>, <a href="https://youtu.be/5w5RjuTmztU">https://youtu.be/5w5RjuTmztU</a></li>
+<li>"We Chased Driverless Trucks In Texas. What We Saw Will Scare You", <em>YouTube</em>, <a href="https://www.youtube.com/watch?v=CQrQrOPmszE">https://www.youtube.com/watch?v=CQrQrOPmszE</a></li>
+<li>Papineau, David, "Naturalism", <em>The Stanford Encyclopedia of Philosophy</em>, <a href="https://plato.stanford.edu/entries/naturalism/#MetNat">https://plato.stanford.edu/entries/naturalism/#MetNat</a></li>
+<li>Goff, Philip, "Panpsychism", <em>The Stanford Encyclopedia of Philosophy</em>, <a href="https://plato.stanford.edu/entries/panpsychism/">https://plato.stanford.edu/entries/panpsychism/</a></li>
+<li>"Substance Dualism in Descartes", <em>Introduction to Philosophy of Mind</em>, <a href="https://press.rebus.community/intro-to-phil-of-mind/chapter/substance-dualism-in-descartes-2/">https://press.rebus.community/intro-to-phil-of-mind/chapter/substance-dualism-in-descartes-2/</a></li>
+<li>"There's No Rule That Says We'll Make It", <em>YouTube</em>, <a href="https://www.youtube.com/watch?v=JD_iA7imAPs">https://www.youtube.com/watch?v=JD_iA7imAPs</a></li>
+<li>"Fermi paradox", <em>Wikipedia</em>, <a href="https://en.wikipedia.org/wiki/Fermi_paradox#It_is_the_nature_of_intelligent_life_to_destroy_itself">https://en.wikipedia.org/wiki/Fermi_paradox#It_is_the_nature_of_intelligent_life_to_destroy_itself</a></li>
+<li>"Von Neumann probes", <em>Wikipedia</em>, <a href="https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes">https://en.wikipedia.org/wiki/Self-replicating_spacecraft#Von_Neumann_probes</a></li>
+<li>"Human exceptionalism is a danger to all human and nonhuman", <em>Aeon</em>, <a href="https://aeon.co/essays/human-exceptionalism-is-a-danger-to-all-human-and-nonhuman">https://aeon.co/essays/human-exceptionalism-is-a-danger-to-all-human-and-nonhuman</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <!-- Video Modals -->
+  <div id="video-modal-1" class="video-modal">
+    <div class="video-modal-content">
+      <span class="close-modal" onclick="closeModal('video-modal-1')">&times;</span>
+      <iframe id="iframe-1" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="video-modal-2" class="video-modal">
+    <div class="video-modal-content">
+      <span class="close-modal" onclick="closeModal('video-modal-2')">&times;</span>
+      <iframe id="iframe-2" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="video-modal-3" class="video-modal">
+    <div class="video-modal-content">
+      <span class="close-modal" onclick="closeModal('video-modal-3')">&times;</span>
+      <iframe id="iframe-3" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="video-modal-4" class="video-modal">
+    <div class="video-modal-content">
+      <span class="close-modal" onclick="closeModal('video-modal-4')">&times;</span>
+      <iframe id="iframe-4" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Theme management
+    function selectTheme(theme) {
+      document.body.classList.remove('loading');
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('blog-theme', theme);
+      
+      // Update theme icon
+      const themeIcon = document.getElementById('theme-icon');
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      
+      // Hide theme selector
+      const selector = document.getElementById('theme-selector');
+      selector.classList.add('hidden');
+      setTimeout(() => {
+        selector.style.display = 'none';
+      }, 300);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      selectTheme(newTheme);
+    }
+
+    // Initialize theme on load
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('blog-theme');
+      
+      if (savedTheme) {
+        // User has a saved preference, apply it immediately
+        selectTheme(savedTheme);
+      } else {
+        // First time visitor, show theme selector after a brief delay
+        setTimeout(() => {
+          document.body.classList.remove('loading');
+        }, 500);
+      }
+    });
+
+    // Video modal functions
+    function openModal(modalId, videoUrl) {
+      const modal = document.getElementById(modalId);
+      const iframe = modal.querySelector('iframe');
+      iframe.src = videoUrl;
+      modal.style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      const iframe = modal.querySelector('iframe');
+      iframe.src = '';
+      modal.style.display = 'none';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target.classList.contains('video-modal')) {
+        closeModal(event.target.id);
+      }
+    }
+  </script>
+</body>
+
+</html>
